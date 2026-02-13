@@ -1,335 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" c"width=device-width, initial-scale=1.0">
-<title>6+ Years of Us ❤️ – Santhosh & Divya</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" c"width=device-width, initial-scale=1.0" />
+  <title>Santhosh & Divya — 6+ Years of Us ❤️</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-<!-- Confetti -->
-
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{
-  width:100%;height:100%;overflow:hidden;
-  font-family:'Poppins',sans-serif;
-  background:#000;color:#fff;
-}
-
-/* Background */
-.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:-1}
-
-/* Music */
-.music-btn{
-  position:fixed;top:15px;right:15px;z-index:200;
-  padding:8px 14px;border-radius:25px;
-  background:#ff4d6d;border:2px solid #ffb6c1;
-  cursor:pointer;font-size:13px
-}
-
-/* Slider */
-#container{display:flex;width:800vw;height:100vh;transition:transform 1s ease}
-.section{
-  width:100vw;height:100vh;padding:40px 20px;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center
-}
-
-h1{font-family:'Great Vibes',cursive;font-size:60px;color:#ffb6c1}
-h2{font-weight:300;margin-top:8px}
-
-/* Hearts */
-.heart{font-size:70px;margin:10px;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
-
-/* Buttons */
-button{
-  margin-top:20px;padding:12px 28px;
-  border-radius:30px;border:none;
-  background:linear-gradient(45deg,#ff4d6d,#ff99cc);
-  color:#fff;cursor:pointer
-}
-
-/* Gallery */
-.gallery{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;max-width:900px
-}
-.photo{
-  height:180px;border-radius:12px;
-  background:rgba(255,182,193,.25);
-  display:flex;align-items:center;justify-content:center;
-  color:#ffb6c1
-}
-
-/* Timeline */
-.timeline{max-width:650px;text-align:left}
-.event{margin-bottom:15px}
-
-/* Nav */
-.nav{
-  position:fixed;top:50%;transform:translateY(-50%);
-  width:45px;height:45px;border-radius:50%;
-  background:#ff4d6d;display:flex;
-  align-items:center;justify-content:center;
-  cursor:pointer;z-index:100
-}
-#prev{left:10px} #next{right:10px}
-
-/* Mobile */
-@media(max-width:768px){
-  h1{font-size:42px}
-  .gallery{grid-template-columns:1fr}
-}
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- Background Video -->
-<video class="bg-video" autoplay muted loop playsinline>
-  <source src="https://cdn.coverr.co/videos/coverr-couple-holding-hands-1586/1080p.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
-
-<!-- Background Music -->
+<!-- Music -->
 <audio id="bgMusic" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
 </audio>
-<div class="music-btn" "toggleMusic()">🎵 Music</div>
+<button class="music-btn" "toggleMusic()">🎵 Play music</button>
 
-<!-- Navigation -->
-<div id="prev" class="nav" "move(-1)">❮</div>
-<div id="next" class="nav" "move(1)">❯</div>
+<!-- SECTION 1 -->
+<section class="section hero">
+  <div class="content fade">
+    <h1>Santhosh & Divya</h1>
+    <h2>6+ Years of Us ❤️</h2>
 
-<div id="container">
+    <p class="lead">
+      I walked into that temple convinced<br>
+      I would say no.
+    </p>
+    <p class="lead">
+      I walked out knowing<br>
+      I never could.
+    </p>
 
-<!-- SECTION 1: INTRO -->
-<section class="section">
-  <h1>6+ Beautiful Years</h1>
-  <h2>Santhosh & Divya</h2>
-
-  <p style="margin-top:15px">
-    A love story that began with an unexpected<br>
-    “bride‑seeing” scene 😄
-  </p>
-
-  <p style="margin-top:15px">
-    Two hearts that met by chance…
-  </p>
-
-  <div>
-    <span class="heart">❤️</span>
-    <span class="heart">❤️</span>
-    <span class="heart">❤️</span>
-    <span class="heart">👧</span>
-  </div>
-
-  <p id="kid" style="display:none;margin-top:10px">
-    👧 “Hey! I’ll come fight if you forget me!” 😄
-  </p>
-
-  <p style="margin-top:10px">
-    and became a family of THREE ❤️❤️❤️👧
-  </p>
-
-  <button "move(1)">Begin Our Journey →</button>
-</section>
-
-<!-- SECTION 2: MEMORIES -->
-<section class="section">
-  <h1>Our Memories</h1>
-
-  <p style="margin-top:15px">
-    Not just photos —<br>
-    little pieces of a journey that started on one ordinary Sunday<br>
-    and quietly became everything ❤️
-  </p>
-
-  <div class="gallery" style="margin-top:20px">
-    <div class="photo">Photo 1</div>
-    <div class="photo">Photo 2</div>
-    <div class="photo">Photo 3</div>
-    <div class="photo">Photo 4</div>
-    <div class="photo">Photo 5</div>
-    <div class="photo">Photo 6</div>
-  </div>
-
-  <p style="margin-top:10px;font-size:13px">
-    (These moments grew from a single meeting into a lifetime of memories)
-  </p>
-</section>
-
-<!-- SECTION 3: BEGINNING -->
-<section class="section">
-  <h1>How It All Started</h1>
-
-  <p style="margin-top:15px">
-    June 9, 2019.<br>
-    A regular weekend trip to Chennai…<br>
-    that quietly changed my entire life.
-  </p>
-
-  <div class="timeline" style="margin-top:20px">
-    <div class="event"><b>June 09, 2019</b><br>First Meeting<br>A planned temple visit — and a girl for LIFE.</div>
-    <div class="event"><b>June 25, 2019</b><br>First Held Hands<br>Still felt unreal. Still felt right.</div>
-    <div class="event"><b>Aug 03, 2019</b><br>First Kiss<br>When confusion slowly turned into certainty.</div>
-    <div class="event"><b>Aug 16, 2019</b><br>First Hug<br>When comfort replaced doubt.</div>
+    <span class="scroll">↓ scroll</span>
   </div>
 </section>
 
-<!-- SECTION 4: FUNNY -->
+<!-- SECTION 2 -->
 <section class="section">
-  <h1>Wait… Small Correction 😅</h1>
+  <div class="content fade">
+    <h3>June 9, 2019</h3>
+    <p>
+      A regular weekend trip to Chennai.<br>
+      A planned temple visit.<br>
+      A conversation that quietly changed my life.
+    </p>
 
-  <p>Okay, confession time.</p>
-
-  <p style="margin-top:15px">
-    June 11, 2019 wasn’t really<br>
-    “I proposed.”
-  </p>
-
-  <p style="margin-top:15px;font-size:18px">
-    It was actually…<br>
-    <b>She said YES! 💚</b>
-  </p>
-
-  <p style="margin-top:10px">
-    (To loving me, my madness, and my bad jokes… forever 🤪)
-  </p>
-
-  <p style="margin-top:15px">
-    Too fast. Too early. Or maybe… exactly right.<br>
-    June 11, 2019<br>
-    <b>Too late already! He said Yes!!</b><br>
-    (To be remembered for lifetime :p)
-  </p>
+    <p>
+      I had rehearsed my answers.<br>
+      And then you spoke.<br>
+      And everything disappeared.
+    </p>
+  </div>
 </section>
 
-<!-- SECTION 5: MOSHIKA -->
+<!-- SECTION 3 -->
 <section class="section">
-  <h1>Our Greatest Gift</h1>
-  <h2>Moshika</h2>
-  <p>June 17, 2021</p>
+  <div class="content fade">
+    <h3>When “Maybe” Became “Yes”</h3>
 
-  <p style="margin-top:15px">
-    Our love took human form.<br>
-    Two hearts became three ❤️❤️👧
-  </p>
-
-  <p style="margin-top:10px">
-    Our world became fuller, louder, messier…<br>
-    and infinitely more beautiful 💕
-  </p>
+    <ul class="timeline">
+      <li><b>June 09, 2019</b> — First meeting</li>
+      <li><b>June 25, 2019</b> — First hand hold</li>
+      <li><b>Aug 03, 2019</b> — First kiss</li>
+      <li><b>Aug 16, 2019</b> — First hug</li>
+    </ul>
+  </div>
 </section>
 
-<!-- SECTION 6: LETTER -->
-<section class="section">
-  <h1>My Love Letter to You</h1>
-
-  <p style="max-width:750px;line-height:1.8;margin-top:15px">
-    My Dearest Divya,<br><br>
-
-    Six years ago, I walked into a temple convinced I would say no.
-    I was 25, fresh, confident, stubborn, and absolutely sure
-    that I wasn’t ready for marriage.<br><br>
-
-    And then I saw you.<br><br>
-
-    I’ve spoken to many people in my life,
-    but for the first time ever, my voice trembled.
-    You spoke. I listened.
-    And somehow, without saying much, you changed everything.<br><br>
-
-    I had mocked arranged‑marriage stories.
-    I had strong opinions.
-    Yet in just a few minutes, every prepared answer disappeared.<br><br>
-
-    The truth is — you didn’t just walk into my life.
-    You walked past my fears, my doubts, and my stubborn plans…
-    and made yourself at home in my heart.<br><br>
-
-    Watching you become a mother to Moshika
-    showed me a love deeper than I ever imagined.
-    You are my calm, my strength, and my safest place.<br><br>
-
-    Thank you for choosing me that day.
-    Thank you for choosing me every day since.<br><br>
-
-    Forever yours,<br>
-    <b>Santhosh ❤️</b>
-  </p>
+<!-- SECTION 4 -->
+<section class="section soft">
+  <div class="content fade">
+    <h3>Small Correction 😅</h3>
+    <p>
+      June 11, 2019 wasn’t really “I proposed.”<br><br>
+      <b>She said YES 💚</b><br><br>
+      Too fast? Too early?<br>
+      Or maybe… exactly right.
+    </p>
+  </div>
 </section>
 
-<!-- SECTION 7: SECRET -->
+<!-- SECTION 5 -->
 <section class="section">
-  <h1>Secret Love Vault</h1>
-  <p>Only you will know this…</p>
+  <div class="content fade">
+    <h3>Our Memories</h3>
+    <p>These aren’t just photos. They’re pieces of us.</p>
 
-  <p style="margin-top:10px">
-    What is my favourite pet name for you?
-  </p>
-
-  <input id="ans" placeholder="Your answer…" style="margin-top:10px;padding:10px;border-radius:20px;border:none;text-align:center">
-  <button "check()">Unlock</button>
-
-  <div id="msg" style="margin-top:15px"></div>
+    <div class="gallery">
+      <img src="assets/memory1.jpg" />
+      <img src="assets/memory2.jpg" />
+      <img src="assets/memory3.jpg" />
+    </div>
+  </div>
 </section>
 
-<!-- SECTION 8: FINALE -->
-<section class="section">
-  <h1>Forever</h1>
+<!-- SECTION 6 -->
+<section class="section soft">
+  <div class="content fade">
+    <h3>Moshika</h3>
+    <p class="date">June 17, 2021</p>
 
-  <p style="margin-top:15px">
-    6+ years down…<br>
-    forever to go.
-  </p>
-
-  <p style="margin-top:15px">
-    From a hesitant “maybe”<br>
-    to a lifetime of “always” ❤️
-  </p>
-
-  <button "confetti()">Celebrate 🎉</button>
+    <p>
+      Our love took human form.<br>
+      Two hearts became three ❤️❤️👧
+    </p>
+  </div>
 </section>
 
-</div>
+<!-- SECTION 7 -->
+<section class="letter">
+  <div class="content fade">
+    <h3>A Letter Only for You</h3>
 
-<script>
-let index=0,total=8;
+    <p>
+      My Dearest Divya,<br><br>
+      Six years ago, I walked into a temple convinced I would say no...
+      <br><br>
+      Forever yours,<br>
+      <b>Santhosh ❤️</b>
+    </p>
+  </div>
+</section>
 
-function move(d){
-  index=Math.min(Math.max(index+d,0),total-1);
-  document.getElementById("container").style.transform=`translateX(-${index*100}vw)`;
-  if(index===0) setTimeout(()=>document.getElementById("kid").style.display="block",1200);
-}
+<!-- SECTION 8 -->
+<section class="section">
+  <div class="content fade">
+    <h3>Secret Love Vault</h3>
+    <p>What is my favourite pet name for you?</p>
 
-function check(){
-  if(ans.value.toLowerCase()==="pannikutty"){
-    msg.innerHTML="My pannikutty 💕<br>I would choose you again, every single time.<br>Happy Anniversary, my love ❤️";
-    confetti();
-  } else msg.innerHTML="Try again 😄";
-}
+    <input id="ans" placeholder="Your answer..." />
+    <button "check()">Unlock</button>
+    <div id="msg"></div>
+  </div>
+</section>
 
-let music=false;
-function toggleMusic(){
-  const m=document.getElementById("bgMusic");
-  if(!music){m.play();music=true}else{m.pause();music=false}
-}
+<!-- SECTION 9 -->
+<section class="section hero end">
+  <div class="content fade">
+    <h1>Forever</h1>
+    <p>From a hesitant “maybe” to a lifetime of “always.”</p>
+    <button "celebrate()">Celebrate 🎉</button>
+  </div>
+</section>
 
-/* Mobile swipe */
-let startX=0;
-document.addEventListener("touchstart",e=>startX=e.touches[0].clientX,{passive:true});
-document.addEventListener("touchend",e=>{
-  let diff=startX-e.changedTouches[0].clientX;
-  if(Math.abs(diff)>50) diff>0?move(1):move(-1);
-});
-</script>
 
 </body>
 </html>
