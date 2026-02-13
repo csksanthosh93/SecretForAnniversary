@@ -1,632 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" c"width=device-width, initial-scale=1.0" />
-  <title>6+ Years of Us ❤️ – Santhosh & Divya</title>
+<meta charset="UTF-8">
+<meta name="viewport" c"width=device-width, initial-scale=1.0">
+<title>6+ Years of Us ❤️ – Santhosh & Divya</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-  <!-- Confetti -->
-  
+<!-- Confetti -->
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    /* ---------- BACKGROUND ---------- */
-    .bg-media {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      background: #000;
-    }
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
+}
 
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: -1;
-    }
+/* Background */
+.bg-video{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:-1;
+}
 
-    /* ---------- MUSIC ---------- */
-    .music-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 200;
-      padding: 8px 14px;
-      border-radius: 25px;
-      background: rgba(255,77,109,.9);
-      border: 2px solid #ffb6c1;
-      cursor: pointer;
-      font-size: 13px;
-    }
+/* Music */
+.music-btn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:200;
+  padding:8px 14px;
+  border-radius:25px;
+  background:#ff4d6d;
+  border:2px solid #ffb6c1;
+  cursor:pointer;
+  font-size:13px;
+}
 
-    /* ---------- SLIDER ---------- */
-    #container {
-      display: flex;
-      width: 800vw;
-      height: 100vh;
-      transition: transform 1s ease;
-    }
+/* Slider */
+#container{
+  display:flex;
+  width:800vw;
+  height:100vh;
+  transition:transform 1s ease;
+}
+.section{
+  width:100vw;
+  height:100vh;
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
 
-    .section {
-      width: 100vw;
-      height: 100vh;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:60px;
+  color:#ffb6c1;
+}
+h2{font-weight:300;margin-top:8px}
 
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 60px;
-      color: #ffb6c1;
-      margin-bottom: 10px;
-      animation: fadeIn 1s ease;
-    }
+/* Hearts */
+.heart{
+  font-size:70px;
+  margin:10px;
+  animation:pulse 1.5s infinite;
+  cursor:pointer;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+}
 
-    h2 {
-      font-weight: 300;
-      font-size: 20px;
-      margin: 5px 0;
-    }
+/* Buttons */
+button{
+  margin-top:20px;
+  padding:12px 28px;
+  border-radius:30px;
+  border:none;
+  background:linear-gradient(45deg,#ff4d6d,#ff99cc);
+  color:#fff;
+  cursor:pointer;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  max-width:900px;
+}
+.photo{
+  height:180px;
+  border-radius:12px;
+  background:rgba(255,182,193,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffb6c1;
+}
 
-    /* ---------- HEARTS ---------- */
-    .heart {
-      font-size: 70px;
-      margin: 10px;
-      cursor: pointer;
-      animation: pulse 1.5s infinite;
-    }
+/* Timeline */
+.timeline{max-width:600px;text-align:left}
+.event{margin-bottom:15px}
 
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.25); }
-    }
+/* Nav */
+.nav{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#ff4d6d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:100;
+}
+#prev{left:10px}
+#next{right:10px}
 
-    /* ---------- BUTTON ---------- */
-    button {
-      margin-top: 20px;
-      padding: 12px 28px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(45deg,#ff4d6d,#ff99cc);
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    /* ---------- GALLERY ---------- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 12px;
-      max-width: 900px;
-    }
-
-    .photo {
-      height: 180px;
-      border-radius: 12px;
-      background: rgba(255,182,193,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #ffb6c1;
-    }
-
-    /* ---------- TIMELINE ---------- */
-    .timeline {
-      max-width: 600px;
-      text-align: left;
-    }
-
-    .event {
-      margin-bottom: 18px;
-      animation: fadeIn .8s ease forwards;
-    }
-
-    /* ---------- NAV ---------- */
-    .nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255,77,109,.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    #prev { left: 10px; }
-    #next { right: 10px; }
-
-    /* ---------- MOBILE ---------- */
-    @media(max-width:768px){
-      h1 { font-size: 42px; }
-      .gallery { grid-template-columns: 1fr; }
-    }
-  </style>
+/* Mobile */
+@media(max-width:768px){
+  h1{font-size:42px}
+  .gallery{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- BACKGROUND VIDEO (SAFE PLACEHOLDER) -->
-  <video class="bg-media" autoplay muted loop playsinline>
-    <source src="" type="video/mp4">
-  </video>
-  <div class="bg-overlay"></div>
+<!-- Background Video -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="https://cdn.coverr.co/videos/coverr-couple-holding-hands-1586/1080p.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
 
-  <!-- BACKGROUND MUSIC (SAFE PLACEHOLDER) -->
-  <audio id="bgMusic" loop>
-    <source src="" type="audio/mpeg">
-  </audio>
-  <div class="music-toggle" "toggleMusic()">🎵 Music</div>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+</audio>
+<div class="music-btn" "toggleMusic()">🎵 Music</div>
 
-  <!-- NAV -->
-  <div id="prev" class="nav" "move(-1)">❮</div>
-  <div id="next" class="nav" "move(1)">❯</div>
+<!-- Navigation -->
+<div id="prev" class="nav" "move(-1)">❮</div>
+<div id="next" class="nav" "move(1)">❯</div>
 
-  <div id="container">
+<div id="container">
 
-    <!-- 1 INTRO -->
-    <section class="section">
-      <h1>6+ Beautiful Years</h1>
-      <h2>Santhosh & Divya</h2>
+<!-- 1 INTRO -->
+<section class="section">
+  <h1>6+ Beautiful Years</h1>
+  <h2>Santhosh & Divya</h2>
 
-      <div id="hearts">
-        <span class="heart">❤️</span>
-        <span class="heart">❤️</span>
-      </div>
-
-      <p id="kid" style="display:none;margin-top:15px;">
-        👧 “Moshika here! Don’t forget me!” 😄
-      </p>
-
-      <button "move(1)">Begin Our Journey →</button>
-    </section>
-
-    <!-- 2 GALLERY -->
-    <section class="section">
-      <h1>Our Memories 📸</h1>
-      <div class="gallery">
-        <div class="photo">Photo 1</div>
-        <div class="photo">Photo 2</div>
-        <div class="photo">Photo 3</div>
-        <div class="photo">Photo 4</div>
-        <div class="photo">Photo 5</div>
-        <div class="photo">Photo 6</div>
-      </div>
-      <p style="margin-top:10px;font-size:13px;">(You’ll add real photos later)</p>
-    </section>
-
-    <!-- 3 TIMELINE -->
-    <section class="section">
-      <h1>Our Beginning 💫</h1>
-      <div class="timeline">
-        <div class="event">📍 June 09, 2019 – First Meeting</div>
-        <div class="event" id="oops">💍 June 11, 2019 – I Proposed</div>
-        <div class="event">🤝 June 25, 2019 – First Held Hands</div>
-        <div class="event">😘 Aug 03, 2019 – First Kiss</div>
-        <div class="event">🤗 Aug 16, 2019 – First Hug</div>
-      </div>
-    </section>
-
-    <!-- 4 CORRECTION -->
-    <section class="section">
-      <h1>Correction 😅</h1>
-      <p>Oops… my bad 😄</p>
-      <p style="margin-top:15px;font-size:18px;">
-        June 11, 2019 — <b>She said YES! 💚</b>
-      </p>
-      <p>(To loving me forever 🤪)</p>
-    </section>
-
-    <!-- 5 MOSHIKA -->
-    <section class="section">
-      <h1>Our Greatest Gift 👶</h1>
-      <h2>Moshika</h2>
-      <p>June 17, 2021</p>
-      <p style="margin-top:10px;">Two hearts became three ❤️❤️👧</p>
-    </section>
-
-    <!-- 6 LETTER -->
-    <section class="section">
-      <h1>My Love Letter 💌</h1>
-      <p style="max-width:700px;">
-        Divya, every chapter of my life is better because you are in it.
-        Thank you for loving me, for our beautiful daughter,
-        and for choosing me every single day.
-        <br><br>Forever yours,<br><b>Santhosh ❤️</b>
-      </p>
-    </section>
-
-    <!-- 7 SECRET -->
-    <section class="section">
-      <h1>Secret Vault 🔐</h1>
-      <p>What is my favourite pet name for you?</p>
-      <input id="ans" placeholder="Your answer…" />
-      <button "check()">Unlock</button>
-      <div id="msg"></div>
-    </section>
-
-    <!-- 8 FINALE -->
-    <section class="section">
-      <h1>Forever ❤️</h1>
-      <p>6+ years down, forever to go</p>
-      <button "confetti()">Celebrate 🎉</button>
-    </section>
-
+  <div id="hearts">
+    <span class="heart">❤️</span>
+    <span class="heart">❤️</span>
   </div>
 
-  <script>
-    let i = 0;
-    const total = 8;
+  <p id="kid" style="display:none;margin-top:15px">
+    👧 “Moshika here! Don’t forget me!” 😄
+  </p>
 
-    function move(d){
-      i = Math.min(Math.max(i + d,0), total-1);
-      document.getElementById("container").style.transform = `translateX(-${i*100}vw)`;
-      if(i === 0) setTimeout(()=>document.getElementById("kid").style.display="block",1500);
-    }
+  <button "move(1)">Begin Our Journey →</button>
+</section>
 
-    function check(){
-      if(document.getElementById("ans").value.toLowerCase() === "pannikutty"){
-        document.getElementById("msg").innerHTML = "💖 Unlocked!";
-        confetti();
-      } else {
-        document.getElementById("msg").innerHTML = "Try again 😄";
-      }
-    }
-
-    let playing = false;
-    function toggleMusic(){
-      const m = document.getElementById("bgMusic");
-      playing ? m.pause() : m.play();
-      playing = !playing;
-    }
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" c"width=device-width, initial-scale=1.0" />
-  <title>6+ Years of Us ❤️ – Santhosh & Divya</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
-  <!-- Confetti -->
-  
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-    }
-
-    /* ---------- BACKGROUND ---------- */
-    .bg-media {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      background: #000;
-    }
-
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: -1;
-    }
-
-    /* ---------- MUSIC ---------- */
-    .music-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 200;
-      padding: 8px 14px;
-      border-radius: 25px;
-      background: rgba(255,77,109,.9);
-      border: 2px solid #ffb6c1;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    /* ---------- SLIDER ---------- */
-    #container {
-      display: flex;
-      width: 800vw;
-      height: 100vh;
-      transition: transform 1s ease;
-    }
-
-    .section {
-      width: 100vw;
-      height: 100vh;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 60px;
-      color: #ffb6c1;
-      margin-bottom: 10px;
-      animation: fadeIn 1s ease;
-    }
-
-    h2 {
-      font-weight: 300;
-      font-size: 20px;
-      margin: 5px 0;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* ---------- HEARTS ---------- */
-    .heart {
-      font-size: 70px;
-      margin: 10px;
-      cursor: pointer;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.25); }
-    }
-
-    /* ---------- BUTTON ---------- */
-    button {
-      margin-top: 20px;
-      padding: 12px 28px;
-      border-radius: 30px;
-      border: none;
-      background: linear-gradient(45deg,#ff4d6d,#ff99cc);
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    /* ---------- GALLERY ---------- */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 12px;
-      max-width: 900px;
-    }
-
-    .photo {
-      height: 180px;
-      border-radius: 12px;
-      background: rgba(255,182,193,.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #ffb6c1;
-    }
-
-    /* ---------- TIMELINE ---------- */
-    .timeline {
-      max-width: 600px;
-      text-align: left;
-    }
-
-    .event {
-      margin-bottom: 18px;
-      animation: fadeIn .8s ease forwards;
-    }
-
-    /* ---------- NAV ---------- */
-    .nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255,77,109,.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    #prev { left: 10px; }
-    #next { right: 10px; }
-
-    /* ---------- MOBILE ---------- */
-    @media(max-width:768px){
-      h1 { font-size: 42px; }
-      .gallery { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- BACKGROUND VIDEO (SAFE PLACEHOLDER) -->
-  <video class="bg-media" autoplay muted loop playsinline>
-    <source src="" type="video/mp4">
-  </video>
-  <div class="bg-overlay"></div>
-
-  <!-- BACKGROUND MUSIC (SAFE PLACEHOLDER) -->
-  <audio id="bgMusic" loop>
-    <source src="" type="audio/mpeg">
-  </audio>
-  <div class="music-toggle" "toggleMusic()">🎵 Music</div>
-
-  <!-- NAV -->
-  <div id="prev" class="nav" "move(-1)">❮</div>
-  <div id="next" class="nav" "move(1)">❯</div>
-
-  <div id="container">
-
-    <!-- 1 INTRO -->
-    <section class="section">
-      <h1>6+ Beautiful Years</h1>
-      <h2>Santhosh & Divya</h2>
-
-      <div id="hearts">
-        <span class="heart">❤️</span>
-        <span class="heart">❤️</span>
-      </div>
-
-      <p id="kid" style="display:none;margin-top:15px;">
-        👧 “Moshika here! Don’t forget me!” 😄
-      </p>
-
-      <button "move(1)">Begin Our Journey →</button>
-    </section>
-
-    <!-- 2 GALLERY -->
-    <section class="section">
-      <h1>Our Memories 📸</h1>
-      <div class="gallery">
-        <div class="photo">Photo 1</div>
-        <div class="photo">Photo 2</div>
-        <div class="photo">Photo 3</div>
-        <div class="photo">Photo 4</div>
-        <div class="photo">Photo 5</div>
-        <div class="photo">Photo 6</div>
-      </div>
-      <p style="margin-top:10px;font-size:13px;">(You’ll add real photos later)</p>
-    </section>
-
-    <!-- 3 TIMELINE -->
-    <section class="section">
-      <h1>Our Beginning 💫</h1>
-      <div class="timeline">
-        <div class="event">📍 June 09, 2019 – First Meeting</div>
-        <div class="event" id="oops">💍 June 11, 2019 – I Proposed</div>
-        <div class="event">🤝 June 25, 2019 – First Held Hands</div>
-        <div class="event">😘 Aug 03, 2019 – First Kiss</div>
-        <div class="event">🤗 Aug 16, 2019 – First Hug</div>
-      </div>
-    </section>
-
-    <!-- 4 CORRECTION -->
-    <section class="section">
-      <h1>Correction 😅</h1>
-      <p>Oops… my bad 😄</p>
-      <p style="margin-top:15px;font-size:18px;">
-        June 11, 2019 — <b>She said YES! 💚</b>
-      </p>
-      <p>(To loving me forever 🤪)</p>
-    </section>
-
-    <!-- 5 MOSHIKA -->
-    <section class="section">
-      <h1>Our Greatest Gift 👶</h1>
-      <h2>Moshika</h2>
-      <p>June 17, 2021</p>
-      <p style="margin-top:10px;">Two hearts became three ❤️❤️👧</p>
-    </section>
-
-    <!-- 6 LETTER -->
-    <section class="section">
-      <h1>My Love Letter 💌</h1>
-      <p style="max-width:700px;">
-        Divya, every chapter of my life is better because you are in it.
-        Thank you for loving me, for our beautiful daughter,
-        and for choosing me every single day.
-        <br><br>Forever yours,<br><b>Santhosh ❤️</b>
-      </p>
-    </section>
-
-    <!-- 7 SECRET -->
-    <section class="section">
-      <h1>Secret Vault 🔐</h1>
-      <p>What is my favourite pet name for you?</p>
-      <input id="ans" placeholder="Your answer…" />
-      <button "check()">Unlock</button>
-      <div id="msg"></div>
-    </section>
-
-    <!-- 8 FINALE -->
-    <section class="section">
-      <h1>Forever ❤️</h1>
-      <p>6+ years down, forever to go</p>
-      <button "confetti()">Celebrate 🎉</button>
-    </section>
-
+<!-- 2 GALLERY -->
+<section class="section">
+  <h1>Our Memories 📸</h1>
+  <div class="gallery">
+    <div class="photo">Photo 1</div>
+    <div class="photo">Photo 2</div>
+    <div class="photo">Photo 3</div>
+    <div class="photo">Photo 4</div>
+    <div class="photo">Photo 5</div>
+    <div class="photo">Photo 6</div>
   </div>
+  <p style="margin-top:10px;font-size:13px">(Add real photos later)</p>
+</section>
 
-  <script>
-    let i = 0;
-    const total = 8;
+<!-- 3 TIMELINE -->
+<section class="section">
+  <h1>Our Beginning 💫</h1>
+  <div class="timeline">
+    <div class="event">📍 June 09, 2019 – First Meeting</div>
+    <div class="event">💍 June 11, 2019 – I Proposed</div>
+    <div class="event">🤝 June 25, 2019 – First Held Hands</div>
+    <div class="event">😘 Aug 03, 2019 – First Kiss</div>
+    <div class="event">🤗 Aug 16, 2019 – First Hug</div>
+  </div>
+</section>
 
-    function move(d){
-      i = Math.min(Math.max(i + d,0), total-1);
-      document.getElementById("container").style.transform = `translateX(-${i*100}vw)`;
-      if(i === 0) setTimeout(()=>document.getElementById("kid").style.display="block",1500);
-    }
+<!-- 4 FUNNY FIX -->
+<section class="section">
+  <h1>Correction 😅</h1>
+  <p>Oops… my bad 😄</p>
+  <p style="margin-top:15px;font-size:18px">
+    June 11, 2019 — <b>She said YES! 💚</b>
+  </p>
+  <p>(To loving me forever 🤪)</p>
+</section>
 
-    function check(){
-      if(document.getElementById("ans").value.toLowerCase() === "pannikutty"){
-        document.getElementById("msg").innerHTML = "💖 Unlocked!";
-        confetti();
-      } else {
-        document.getElementById("msg").innerHTML = "Try again 😄";
-      }
-    }
+<!-- 5 MOSHIKA -->
+<section class="section">
+  <h1>Our Greatest Gift 👶</h1>
+  <h2>Moshika</h2>
+  <p>June 17, 2021</p>
+  <p style="margin-top:10px">Two hearts became three ❤️❤️👧</p>
+</section>
 
-    let playing = false;
-    function toggleMusic(){
-      const m = document.getElementById("bgMusic");
-      playing ? m.pause() : m.play();
-      playing = !playing;
-    }
-  </script>
+<!-- 6 LOVE LETTER -->
+<section class="section">
+  <h1>My Love Letter 💌</h1>
+  <p style="max-width:700px;line-height:1.8">
+    My Dearest Divya,<br><br>
+    Six years ago, I met you — and without knowing it, I met my future.
+    From our very first conversation, something felt right.
+    Choosing you was the best decision of my life.<br><br>
 
-</body>
-</html>
+    Watching you become a mother to Moshika made me love you even more.
+    You are my safe place, my best friend, and my forever.<br><br>
+
+    Thank you for our beautiful family.
+    Thank you for choosing me every single day.<br><br>
+
+    Forever yours,<br>
+    <b>Santhosh ❤️</b>
+  </p>
+</section>
+
+<!-- 7 SECRET -->
+<section class="section">
+  <h1>Secret Vault 🔐</h1>
+  <p>What is my favourite pet name for you?</p>
+  <input id="ans" placeholder="Your answer…" />
+  <button "check()">Unlock</button>
+  <div id="msg"></div>
+</section>
+
+<!-- 8 FINALE -->
+<section class="
