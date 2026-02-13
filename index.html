@@ -1,246 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6+ Years of Us ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<style>
-
-html,body{
-  margin:0;
-  padding:0;
-  overflow:hidden;
-  font-family:'Poppins',sans-serif;
-  color:white;
-  background:black;
-}
-
-/* Background Video */
-video{
-  position:fixed;
-  right:0;
-  bottom:0;
-  min-width:100%;
-  min-height:100%;
-  object-fit:cover;
-  z-index:-3;
-  filter:brightness(35%);
-}
-
-/* Dark overlay for readability */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.4);
-  z-index:-2;
-}
-
-/* Container */
-#container{
-  display:flex;
-  width:800%;
-  height:100vh;
-  transition: transform 1.2s cubic-bezier(0.77,0,0.175,1);
-}
-
-.section{
-  width:100vw;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px;
-  box-sizing:border-box;
-  max-width:900px;
-  margin:auto;
-}
-
-h1{
-  font-family:'Great Vibes',cursive;
-  font-size:52px;
-  margin-bottom:10px;
-  color:#ffb6c1;
-}
-
-h2{
-  font-weight:300;
-  margin:5px 0;
-}
-
-.timeline-date{
-  font-size:22px;
-  font-weight:600;
-  color:#ff99cc;
-  margin-top:15px;
-}
-
-.heart{
-  font-size:60px;
-  margin:10px;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.25);}
-  100%{transform:scale(1);}
-}
-
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:25px;
-  background:linear-gradient(45deg,#ff4d6d,#ff99cc);
-  color:white;
-  margin-top:20px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-input{
-  padding:10px;
-  border-radius:20px;
-  border:none;
-  text-align:center;
-  margin-top:15px;
-}
-
-.secret-msg{
-  margin-top:20px;
-  font-size:20px;
-}
-
-@keyframes glow{
-  from{text-shadow:0 0 5px pink;}
-  to{text-shadow:0 0 20px hotpink;}
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Surprise</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+    <header>
+        <h1>Happy Anniversary!</h1>
+        <nav>
+            <ul>
+                <li><a href="#gallery">Photo Gallery</a></li>
+                <li><a href="#timeline">Emotional Timeline</a></li>
+                <li><a href="#love-letter">Hidden Love Letter</a></li>
+                <li><a href="#secret-vault">Secret Vault</a></li>
+                <li><a href="#surprise">Moshika's Surprise Moment</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<video autoplay muted loop>
-  <source src="https://cdn.coverr.co/videos/coverr-couple-holding-hands-1586/1080p.mp4" type="video/mp4">
-</video>
+    <section id="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery">
+            <img src="photo1.jpg" alt="Memory 1">
+            <img src="photo2.jpg" alt="Memory 2">
+            <img src="photo3.jpg" alt="Memory 3">
+        </div>
+    </section>
 
-<div class="overlay"></div>
+    <section id="timeline">
+        <h2>Emotional Timeline</h2>
+        <ul>
+            <li>2020: Our First Date</li>
+            <li>2021: Our Engagement</li>
+            <li>2022: Our Wedding</li>
+            <li>2023: Our First Anniversary</li>
+        </ul>
+    </section>
 
-<div id="container">
+    <section id="love-letter">
+        <h2>Hidden Love Letter</h2>
+        <p>To my beloved, every moment with you is a treasure...</p>
+        <button onclick="alert('Find the hidden message!')">Reveal Love Letter</button>
+    </section>
 
-<!-- 1 INTRO -->
-<div class="section">
-  <h1>6+ Beautiful Years</h1>
-  <h2>Two hearts became one ❤️❤️</h2>
+    <section id="secret-vault">
+        <h2>Secret Vault</h2>
+        <p>Unlock with the answer to this question: What does "pannikutty" mean?</p>
+        <input type="text" placeholder="Enter answer here">
+        <button onclick="checkAnswer()">Submit</button>
+    </section>
 
-  <div id="heartsArea">
-    <span class="heart">❤️</span>
-    <span class="heart">❤️</span>
-  </div>
-
-  <h2 style="margin-top:20px;">And then… our world became even more beautiful</h2>
-
-  <button onclick="addThirdHeart()">Continue Our Story</button>
-</div>
-
-<!-- 2 TIMELINE 1 -->
-<div class="section">
-  <h1>Our Beginning</h1>
-  <div class="timeline-date">June 09, 2019</div>
-  <h2>First Meeting</h2>
-
-  <div class="timeline-date">June 11, 2019</div>
-  <h2>I Proposed</h2>
-
-  <div class="timeline-date">Aug 3, 2019</div>
-  <h2>First Kiss 😘</h2>
-</div>
-
-<!-- 3 TIMELINE 2 -->
-<div class="section">
-  <h1>Forever Started</h1>
-  <div class="timeline-date">Sept 13, 2019</div>
-  <h2>Engaged 💍</h2>
-
-  <div class="timeline-date">Mar 05, 2020</div>
-  <h2>Married 💑</h2>
-</div>
-
-<!-- 4 DAUGHTER -->
-<div class="section">
-  <h1>Our Greatest Gift</h1>
-  <div class="timeline-date">June 17, 2021</div>
-  <h2>Moshika Was Born 👶💖</h2>
-  <h2>Two hearts became three</h2>
-</div>
-
-<!-- 5 LOVE LETTER -->
-<div class="section">
-  <h1>My Love Letter</h1>
-  <div id="letter"></div>
-</div>
-
-<!-- 6 SECRET -->
-<div class="section">
-  <h1>Secret Love Vault 🔐</h1>
-  <h2>Only you can unlock this...</h2>
-  <h2 style="margin-top:10px;">What is my favourite petname for you?</h2>
-
-  <input id="answer" placeholder="Type your answer here">
-  <br>
-  <button onclick="checkAnswer()">Unlock</button>
-  <button onclick="skipSecret()">Skip</button>
-
-  <div id="secretMessage" class="secret-msg"></div>
-</div>
-
-<!-- 7 FINALE -->
-<div class="section">
-  <h1>Grand Finale</h1>
-  <h2>Forever Yours ❤️</h2>
-  <button onclick="fireworks()">Celebrate Us 🎆</button>
-</div>
-
-</div>
-
-<script>
-
-/* Navigation */
-let current=0;
-const total=document.querySelectorAll(".section").length;
-let animating=false;
-
-function updateSlide(){
-  animating=true;
-  document.getElementById("container").style.transform=
-  "translateX(-"+current*100+"vw)";
-  setTimeout(()=>animating=false,1000);
-}
-
-function nextSlide(){
-  if(current<total-1 && !animating){
-    current++;
-    updateSlide();
-  }
-}
-
-function prevSlide(){
-  if(current>0 && !animating){
-    current--;
-    updateSlide();
-  }
-}
-
-document.addEventListener("click",function(e){
-  if(animating) return;
-  if(e.clientX > window.innerWidth/2){
-    nextSlide();
-  } else {
-    prevSlide();
+    <section id="surprise">
+        <h2>Moshika's Surprise Moment</h2>
+        <p>Shh! This is a moment just for you!</p>
+    </section>
+    
+    <footer>
+        <p>© 2026 Happy Anniversary!</p>
+    </footer>
+    <script>
+        function checkAnswer() {
+            const answer = document.querySelector('input').value;
+            if(answer === 'pannikutty') {
+                alert('Correct! You found the secret!');
+            } else {
+                alert('Try again!');
+            }
+        }
+    </script>
+</body>
+</html>
