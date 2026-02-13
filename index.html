@@ -2,74 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anniversary Surprise</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Secret for Anniversary</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { text-align: center; padding: 50px; background-color: #f8f8f8; }
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+        .gallery img { width: 100px; margin: 10px; border-radius: 8px; }
+        .timeline { margin: 20px; padding: 20px; }
+        .timeline div { margin: 10px 0; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); }
+        .modal img { margin: auto; display: block; width: auto; height: auto; max-width: 90%; max-height: 90%; }
+        .close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Happy Anniversary!</h1>
-        <nav>
-            <ul>
-                <li><a href="#gallery">Photo Gallery</a></li>
-                <li><a href="#timeline">Emotional Timeline</a></li>
-                <li><a href="#love-letter">Hidden Love Letter</a></li>
-                <li><a href="#secret-vault">Secret Vault</a></li>
-                <li><a href="#surprise">Moshika's Surprise Moment</a></li>
-            </ul>
-        </nav>
+        <h1>❤️❤️❤️ Happy Anniversary Moshika! ❤️❤️❤️</h1>
     </header>
-
-    <section id="gallery">
-        <h2>Photo Gallery</h2>
-        <div class="gallery">
-            <img src="photo1.jpg" alt="Memory 1">
-            <img src="photo2.jpg" alt="Memory 2">
-            <img src="photo3.jpg" alt="Memory 3">
-        </div>
+    <section class="gallery">
+        <img src="image1.jpg" alt="Gallery Image 1" onclick="openModal(this.src)">
+        <img src="image2.jpg" alt="Gallery Image 2" onclick="openModal(this.src)">
+        <img src="image3.jpg" alt="Gallery Image 3" onclick="openModal(this.src)">
+        <!-- Add more images as needed -->
     </section>
-
-    <section id="timeline">
-        <h2>Emotional Timeline</h2>
-        <ul>
-            <li>2020: Our First Date</li>
-            <li>2021: Our Engagement</li>
-            <li>2022: Our Wedding</li>
-            <li>2023: Our First Anniversary</li>
-        </ul>
+    <section class="timeline">
+        <h2>Timeline of Our Love</h2>
+        <div>June 09, 2019: First Meeting</div>
+        <div>June 11, 2019: Proposed</div>
+        <div>June 25, 2019: First Held Hand</div>
+        <div>Aug 03, 2019: First Kiss</div>
+        <div>Aug 16, 2019: First Hug</div>
+        <div>Sept 13, 2019: Engaged</div>
+        <div>Mar 05, 2020: Married</div>
+        <div>June 17, 2021: Daughter Moshika Born</div>
     </section>
-
-    <section id="love-letter">
-        <h2>Hidden Love Letter</h2>
-        <p>To my beloved, every moment with you is a treasure...</p>
-        <button onclick="alert('Find the hidden message!')">Reveal Love Letter</button>
+    <section class="love-letter">
+        <h2>My Love Letter to You</h2>
+        <p>Dear Moshika,</p>
+        <p>Every moment with you is a treasure, a memory that I cherish ...</p>
+        <!-- Continue the love letter content -->
     </section>
-
-    <section id="secret-vault">
+    <section class="secret-vault">
         <h2>Secret Vault</h2>
-        <p>Unlock with the answer to this question: What does "pannikutty" mean?</p>
-        <input type="text" placeholder="Enter answer here">
-        <button onclick="checkAnswer()">Submit</button>
+        <p>The answer is: <strong>pannikutty</strong></p>
     </section>
-
-    <section id="surprise">
-        <h2>Moshika's Surprise Moment</h2>
-        <p>Shh! This is a moment just for you!</p>
+    <section class="grand-finale">
+        <h2>Grand Finale with Fireworks</h2>
+        <p>✨🎇 Let's celebrate with a lavish display of fireworks! 🎇✨</p>
+        <!-- Add fireworks animation or description here -->
     </section>
-    
-    <footer>
-        <p>© 2026 Happy Anniversary!</p>
-    </footer>
     <script>
-        function checkAnswer() {
-            const answer = document.querySelector('input').value;
-            if(answer === 'pannikutty') {
-                alert('Correct! You found the secret!');
-            } else {
-                alert('Try again!');
-            }
+        function openModal(src) {
+            var modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `<span class='close' onclick='this.parentNode.style.display="none";'>&times;</span><img src='` + src + `'>`;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
         }
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                var modals = document.getElementsByClassName('modal');
+                for (var i = 0; i < modals.length; i++) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        });
     </script>
 </body>
 </html>
