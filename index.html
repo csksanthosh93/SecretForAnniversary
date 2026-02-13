@@ -1,170 +1,279 @@
-    <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>6 Years of Us ❤️</title>
+<title>Our Forever ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-html {
-    scroll-behavior: smooth;
+
+html,body{
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  color:white;
 }
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    background: black;
-    color: white;
+/* Background video */
+video{
+  position:fixed;
+  min-width:100%;
+  min-height:100%;
+  object-fit:cover;
+  z-index:-3;
+  filter:brightness(40%);
 }
 
-/* FULL PAGE SECTIONS */
-section {
-    height: 100vh;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    text-align: center;
-    position: relative;
-    transition: transform 1s ease, opacity 1s ease;
+/* Stars */
+.stars{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url("https://i.imgur.com/YKY28eT.png");
+  animation:moveStars 200s linear infinite;
+  z-index:-2;
+}
+@keyframes moveStars{
+  from{background-position:0 0;}
+  to{background-position:10000px 5000px;}
 }
 
-/* Different love gradients per section */
-.section1 { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
-.section2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
-.section3 { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
-.section4 { background: linear-gradient(135deg, #f093fb, #f5576c); }
-.section5 { background: linear-gradient(135deg, #ff6a88, #ff99ac); }
-
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 60px;
-    margin-bottom: 10px;
-    animation: glow 2s infinite alternate;
+/* Container */
+#container{
+  display:flex;
+  width:700%;
+  height:100vh;
+  transition:transform 1.5s ease-in-out;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 30px white; }
+.section{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-h2 { font-size: 30px; }
-
-.timeline {
-    max-width: 700px;
-    line-height: 1.8;
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:55px;
+  color:#ffb6c1;
 }
 
-.gallery img {
-    width: 250px;
-    border-radius: 20px;
-    margin: 10px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.6);
-    transition: transform 0.6s ease;
+.heart{
+  font-size:60px;
+  animation:pulse 1.5s infinite;
 }
 
-.gallery img:hover {
-    transform: scale(1.1) rotate(2deg);
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.3);}
+  100%{transform:scale(1);}
 }
 
-button {
-    background: white;
-    color: #ff4d6d;
-    border: none;
-    padding: 15px 35px;
-    border-radius: 40px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.4s;
+/* petals */
+.petal{
+  position:fixed;
+  top:-10px;
+  width:12px;
+  height:12px;
+  background:pink;
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
 }
 
-button:hover {
-    background: #ff4d6d;
-    color: white;
-    transform: scale(1.1);
+/* sparkle */
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  pointer-events:none;
+  animation:spark 0.8s linear forwards;
+}
+@keyframes spark{
+  to{opacity:0; transform:scale(2);}
 }
 
-/* Heart burst effect */
-.burst {
-    position: fixed;
-    font-size: 24px;
-    animation: burst 1.5s ease-out forwards;
+/* button */
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(45deg,#ff4d6d,#ff99cc);
+  color:white;
+  margin-top:20px;
 }
 
-@keyframes burst {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: translateY(-200px) scale(2); }
+/* glow */
+@keyframes glow{
+  from{text-shadow:0 0 5px pink;}
+  to{text-shadow:0 0 20px hotpink;}
 }
+
+input{
+  padding:10px;
+  border-radius:20px;
+  border:none;
+  text-align:center;
+}
+
+#letter{
+  max-width:80%;
+  font-size:20px;
+  border-right:2px solid pink;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="section1">
-    <h1>From June 9 to Forever ❤️</h1>
-    <p>6 Years • 2 Hearts • 1 Beautiful Life</p>
-</section>
+<video autoplay muted loop>
+  <source src="https://cdn.coverr.co/videos/coverr-couple-holding-hands-1586/1080p.mp4" type="video/mp4">
+</video>
 
-<!-- LOVE STORY -->
-<section class="section2">
-    <h2>💖 Our Beginning</h2>
-    <div class="timeline">
-        <p>June 09, 2019 – We met.</p>
-        <p>June 11, 2019 – I proposed.</p>
-        <p>June 25, 2019 – First hand I ever held.</p>
-        <p>Aug 3, 2019 – First kiss.</p>
-        <p>Aug 16, 2019 – First hug.</p>
-        <p>Sept 13, 2019 – Engaged.</p>
-        <p>Mar 05, 2020 – Married.</p>
-    </div>
-</section>
+<div class="stars"></div>
 
-<!-- DAUGHTER -->
-<section class="section3">
-    <h2>👨‍👩‍👧 Our Princess Moshika</h2>
-    <div class="gallery">
-        <img src="photo5.jpg">
-        <img src="photo6.jpg">
-    </div>
-    <p>June 17, 2021 – The day our love multiplied.</p>
-</section>
+<audio autoplay loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
 
-<!-- GROWTH -->
-<section class="section4">
-    <h2>✨ 6 Years Later</h2>
-    <p>
-        We grew. We learned. We evolved.  
-        I am still choosing you. Every day.
-    </p>
-</section>
+<div id="container">
 
-<!-- PROPOSAL -->
-<section class="section5">
-    <h2>💍 One More Question...</h2>
-    <button onclick="celebrate()">Will You Marry Me Again? ❤️</button>
-</section>
+<div class="section">
+  <h1>6+ Years ❤️</h1>
+  <div id="hearts">
+    ❤️ ❤️
+  </div>
+  <button onclick="addHeart()">Something Missing?</button>
+</div>
+
+<div class="section">
+  <h1>Our Story Began 💕</h1>
+</div>
+
+<div class="section">
+  <h1>We Became One 💍</h1>
+</div>
+
+<div class="section">
+  <h1>Our Greatest Gift 👶</h1>
+</div>
+
+<div class="section">
+  <h1>My Love Letter</h1>
+  <div id="letter"></div>
+</div>
+
+<div class="section">
+  <h1>Secret Vault 🔐</h1>
+  <input id="answer" placeholder="Your answer">
+  <button onclick="checkAnswer()">Unlock</button>
+  <p id="secretMessage"></p>
+</div>
+
+<div class="section">
+  <h1>Forever Yours ❤️</h1>
+  <button onclick="fireworks()">Celebrate</button>
+</div>
+
+</div>
 
 <script>
-function celebrate() {
-    alert("Happy 6th Anniversary ❤️ Forever Yours.");
 
-    for (let i = 0; i < 30; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("burst");
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = "80vh";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 1500);
-    }
+/* auto scroll */
+let current=0;
+setInterval(()=>{
+ if(current<6){
+  current++;
+  document.getElementById("container").style.transform=
+  "translateX(-"+current*100+"vw)";
+ }
+},6000);
+
+/* add heart */
+function addHeart(){
+ document.getElementById("hearts").innerHTML="❤️ ❤️ ❤️";
+ alert("Someone small insisted on joining 😄");
 }
+
+/* petals */
+setInterval(()=>{
+ let petal=document.createElement("div");
+ petal.className="petal";
+ petal.style.left=Math.random()*100+"vw";
+ petal.style.animationDuration=(5+Math.random()*5)+"s";
+ document.body.appendChild(petal);
+ setTimeout(()=>petal.remove(),10000);
+},300);
+
+/* sparkle */
+document.addEventListener("mousemove",e=>{
+ let s=document.createElement("div");
+ s.className="sparkle";
+ s.style.left=e.clientX+"px";
+ s.style.top=e.clientY+"px";
+ document.body.appendChild(s);
+ setTimeout(()=>s.remove(),800);
+});
+
+/* typewriter */
+let msg="You are my forever, my always, and my greatest blessing. Every moment with you is magic.";
+let i=0;
+function typeWriter(){
+ if(i<msg.length){
+  document.getElementById("letter").innerHTML+=msg.charAt(i);
+  i++;
+  setTimeout(typeWriter,50);
+ }
+}
+setTimeout(typeWriter,14000);
+
+/* HASH CHECK (secret answer hidden) */
+const secretHash="680a7e0f7b0c5e3b7e3b0cbb0f9e9e44";
+
+function md5cycle(x, k){return crypto.subtle.digest("SHA-256", new TextEncoder().encode(k));}
+
+async function checkAnswer(){
+
+ let input=document.getElementById("answer").value.toLowerCase().trim();
+
+ let buf=await crypto.subtle.digest("SHA-256", new TextEncoder().encode(input));
+ let hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+
+ if(hash===secretHash){
+  document.getElementById("secretMessage").innerHTML=
+  "You unlocked my heart forever ❤️";
+  document.getElementById("secretMessage").style.animation="glow 1s infinite alternate";
+  fireworks();
+ }else{
+  alert("Try again my love ❤️");
+ }
+
+}
+
+/* fireworks */
+function fireworks(){
+ var duration=5*1000;
+ var end=Date.now()+duration;
+ (function frame(){
+  confetti({particleCount:5,angle:60,spread:55,origin:{x:0}});
+  confetti({particleCount:5,angle:120,spread:55,origin:{x:1}});
+  if(Date.now()<end) requestAnimationFrame(frame);
+ })();
+}
+
 </script>
 
 </body>
