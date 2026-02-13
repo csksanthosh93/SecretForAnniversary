@@ -1,196 +1,170 @@
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From June 9 to Forever ❤️</title>
+<title>6 Years of Us ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #fff0f3, #ffe5ec);
-    color: #333;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    background: black;
+    color: white;
 }
 
-h1, h2 {
-    font-family: 'Playfair Display', serif;
-}
-
+/* FULL PAGE SECTIONS */
 section {
-    padding: 80px 20px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.hero {
     height: 100vh;
+    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    transition: transform 1s ease, opacity 1s ease;
 }
 
-.hero h1 {
-    font-size: 42px;
-    color: #d6336c;
+/* Different love gradients per section */
+.section1 { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
+.section2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.section3 { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+.section4 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.section5 { background: linear-gradient(135deg, #ff6a88, #ff99ac); }
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+    margin-bottom: 10px;
+    animation: glow 2s infinite alternate;
 }
 
-.subtitle {
-    font-size: 18px;
-    margin-top: 15px;
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px white; }
 }
+
+h2 { font-size: 30px; }
 
 .timeline {
-    max-width: 650px;
-    margin: auto;
-    text-align: left;
+    max-width: 700px;
     line-height: 1.8;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .gallery img {
-    width: 260px;
-    margin: 12px;
+    width: 250px;
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    transition: transform 0.6s ease;
 }
 
-.daughter-section {
-    background: white;
-    border-radius: 30px;
-    margin: 40px 20px;
-    padding: 50px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.gallery img:hover {
+    transform: scale(1.1) rotate(2deg);
 }
 
 button {
-    background: #ff4d6d;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-footer {
-    padding: 30px;
-    background: #ffccd5;
-}
-
-/* Floating hearts */
-.heart {
-    position: fixed;
-    bottom: -10px;
-    font-size: 20px;
-    animation: floatUp 8s linear infinite;
+    background: white;
     color: #ff4d6d;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.4s;
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
+button:hover {
+    background: #ff4d6d;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Heart burst effect */
+.burst {
+    position: fixed;
+    font-size: 24px;
+    animation: burst 1.5s ease-out forwards;
+}
+
+@keyframes burst {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: translateY(-200px) scale(2); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<!-- HERO -->
+<section class="section1">
     <h1>From June 9 to Forever ❤️</h1>
-    <p class="subtitle">6 Years. 2 Hearts. 1 Beautiful Life.</p>
-</div>
+    <p>6 Years • 2 Hearts • 1 Beautiful Life</p>
+</section>
 
-<section>
-    <h2>Our Beginning</h2>
+<!-- LOVE STORY -->
+<section class="section2">
+    <h2>💖 Our Beginning</h2>
     <div class="timeline">
-        <p><strong>June 09, 2019</strong> – The first time we met. I didn’t know my life was about to change.</p>
-        <p><strong>June 11, 2019</strong> – I proposed. The fastest and best decision of my life.</p>
-        <p><strong>June 25, 2019</strong> – The first time I held a girl’s hand… and it was yours.</p>
-        <p><strong>Aug 3, 2019</strong> – Our first kiss. A memory I still replay.</p>
-        <p><strong>Aug 16, 2019</strong> – Our first hug. That felt like home.</p>
-        <p><strong>Sept 13, 2019</strong> – Engaged. Officially choosing forever.</p>
-        <p><strong>Mar 05, 2020</strong> – Married. Not just love. Commitment.</p>
+        <p>June 09, 2019 – We met.</p>
+        <p>June 11, 2019 – I proposed.</p>
+        <p>June 25, 2019 – First hand I ever held.</p>
+        <p>Aug 3, 2019 – First kiss.</p>
+        <p>Aug 16, 2019 – First hug.</p>
+        <p>Sept 13, 2019 – Engaged.</p>
+        <p>Mar 05, 2020 – Married.</p>
     </div>
 </section>
 
-<section class="daughter-section">
-    <h2>June 17, 2021 – Our Greatest Blessing</h2>
+<!-- DAUGHTER -->
+<section class="section3">
+    <h2>👨‍👩‍👧 Our Princess Moshika</h2>
     <div class="gallery">
         <img src="photo5.jpg">
         <img src="photo6.jpg">
     </div>
+    <p>June 17, 2021 – The day our love multiplied.</p>
+</section>
+
+<!-- GROWTH -->
+<section class="section4">
+    <h2>✨ 6 Years Later</h2>
     <p>
-        The day Moshika was born, I saw you become something even more beautiful — a mother.  
-        Watching you raise our daughter makes me fall in love with you again and again.  
-        She will grow up knowing what real love looks like… because she sees you.
+        We grew. We learned. We evolved.  
+        I am still choosing you. Every day.
     </p>
 </section>
 
-<section>
-    <h2>6 Years Later…</h2>
-    <p>
-        We have grown. We have argued. We have learned.  
-        I know I don’t always express love the way you expect.  
-        But every responsibility I carry, every late night I work,  
-        every decision I make — has always had you and Moshika in mind.
-    </p>
+<!-- PROPOSAL -->
+<section class="section5">
+    <h2>💍 One More Question...</h2>
+    <button onclick="celebrate()">Will You Marry Me Again? ❤️</button>
 </section>
-
-<section>
-    <h2>My Promise For The Next 60 Years</h2>
-    <p>
-        I promise to be softer.  
-        I promise to love you in your language.  
-        I promise to hold your hand even when we are old.  
-        And if I had to start again from June 9, 2019…  
-        I would still choose you. Faster.
-    </p>
-    <br>
-    <button onclick="alert('Will you marry me again? ❤️ Happy 6th Anniversary.')">
-        Click Me
-    </button>
-</section>
-
-<footer>
-    Happy 6th Anniversary ❤️ — Your Husband
-</footer>
 
 <script>
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-    sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-            section.classList.add("visible");
-        }
-    });
-});
+function celebrate() {
+    alert("Happy 6th Anniversary ❤️ Forever Yours.");
 
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.innerHTML = "❤️";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-}, 800);
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("burst");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "80vh";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+    }
+}
 </script>
 
 </body>
