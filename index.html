@@ -3,71 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret for Anniversary</title>
+    <title>Funny Timeline</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { text-align: center; padding: 50px; background-color: #f8f8f8; }
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
-        .gallery img { width: 100px; margin: 10px; border-radius: 8px; }
-        .timeline { margin: 20px; padding: 20px; }
-        .timeline div { margin: 10px 0; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); }
-        .modal img { margin: auto; display: block; width: auto; height: auto; max-width: 90%; max-height: 90%; }
-        .close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+        .strikethrough {
+            text-decoration: line-through;
+        }
+        #reveal {
+            display: none;
+        }
     </style>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('reveal').style.display = 'block'; 
+            }, 2000); // Show message after 2 seconds
+        };
+    </script>
 </head>
 <body>
-    <header>
-        <h1>❤️❤️❤️ Happy Anniversary Moshika! ❤️❤️❤️</h1>
-    </header>
-    <section class="gallery">
-        <img src="image1.jpg" alt="Gallery Image 1" onclick="openModal(this.src)">
-        <img src="image2.jpg" alt="Gallery Image 2" onclick="openModal(this.src)">
-        <img src="image3.jpg" alt="Gallery Image 3" onclick="openModal(this.src)">
-        <!-- Add more images as needed -->
-    </section>
-    <section class="timeline">
-        <h2>Timeline of Our Love</h2>
-        <div>June 09, 2019: First Meeting</div>
-        <div>June 11, 2019: Proposed</div>
-        <div>June 25, 2019: First Held Hand</div>
-        <div>Aug 03, 2019: First Kiss</div>
-        <div>Aug 16, 2019: First Hug</div>
-        <div>Sept 13, 2019: Engaged</div>
-        <div>Mar 05, 2020: Married</div>
-        <div>June 17, 2021: Daughter Moshika Born</div>
-    </section>
-    <section class="love-letter">
-        <h2>My Love Letter to You</h2>
-        <p>Dear Moshika,</p>
-        <p>Every moment with you is a treasure, a memory that I cherish ...</p>
-        <!-- Continue the love letter content -->
-    </section>
-    <section class="secret-vault">
-        <h2>Secret Vault</h2>
-        <p>The answer is: <strong>pannikutty</strong></p>
-    </section>
-    <section class="grand-finale">
-        <h2>Grand Finale with Fireworks</h2>
-        <p>✨🎇 Let's celebrate with a lavish display of fireworks! 🎇✨</p>
-        <!-- Add fireworks animation or description here -->
-    </section>
-    <script>
-        function openModal(src) {
-            var modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `<span class='close' onclick='this.parentNode.style.display="none";'>&times;</span><img src='` + src + `'>`;
-            document.body.appendChild(modal);
-            modal.style.display = 'block';
-        }
-        window.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                var modals = document.getElementsByClassName('modal');
-                for (var i = 0; i < modals.length; i++) {
-                    modals[i].style.display = 'none';
-                }
-            }
-        });
-    </script>
+    <h1>Our Funny Timeline</h1>
+    <p class="strikethrough">I Proposed on June 11, 2019.</p>
+    <p id="reveal">He said Yes!</p>
 </body>
 </html>
