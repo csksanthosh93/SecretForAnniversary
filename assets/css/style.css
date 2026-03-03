@@ -1,0 +1,19 @@
+:root{--bg:#fff1f5;--bg2:#ffe8f0;--text:#2a1f29;--primary:#e64980;--secondary:#f783ac;--accent:#ffd6e6;--gold:#ffd6a5}
+body{font-family:system-ui;margin:0}
+
+html,body{height:100%}
+body{
+  color:var(--text);
+  background: radial-gradient(1200px 600px at 10% -10%, var(--bg2), transparent 60%),
+              radial-gradient(1000px 500px at 110% 10%, #ffe3ee, transparent 50%),
+              linear-gradient(180deg, var(--bg), #fff);
+}
+.button{background: linear-gradient(180deg, var(--primary), #d63384);color:#fff;border:none;border-radius:999px;padding:10px 16px}
+.button:hover{filter: saturate(1.05) brightness(1.02)}
+.card, .q{ box-shadow: 0 14px 30px rgba(230,73,128,.12); }
+.timeline-item{ border-color: var(--accent); }
+.carousel button{ border-color: var(--accent); }
+.lock{ border-color: var(--accent); }
+section h2{ color: var(--primary); text-shadow: 0 1px 0 #fff; }
+.option.correct{ background: #eafaf1; border-color:#2f9e44; }
+.option.wrong{ background: #fff0f3; border-color:#e03131; }
