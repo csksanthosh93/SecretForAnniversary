@@ -20,7 +20,11 @@ window.addEventListener('load', () => {
   // Wait longer, then show third heart (Moshika) with message
   setTimeout(() => {
     const heart3 = document.getElementById('heart3');
+    const heart1 = document.getElementById('heart1');
+    const heart2 = document.getElementById('heart2');
     const heartText = document.getElementById('heart-text');
+    if(heart1) heart1.classList.add('make-space');
+    if(heart2) heart2.classList.add('make-space');
     if(heart3) {
       heart3.style.visibility = 'visible';
       heart3.classList.add('show');
@@ -38,12 +42,179 @@ window.addEventListener('load', () => {
   }, 6400);
   
   // Initialize quiz
+  initTimelineArt();
+  initTimelineStepper();
   renderQuiz();
   const btnScore = document.getElementById('quiz-score');
   const btnReset = document.getElementById('quiz-reset');
   if(btnScore) btnScore.addEventListener('click', quizScore);
   if(btnReset) btnReset.addEventListener('click', quizReset);
 });
+
+function getTimelineEventPrompt(index, labelText) {
+  const prompts = [
+    'June 09 2019 first meeting inside south indian temple, shy boy and bold confident girl, girl proposing to boy, romantic cinematic illustration, clear full body characters, no text',
+    'June 11 2019 boy proposing to girl, romantic proposal scene, clear full body couple, expressive faces, soft pastel cinematic illustration, no text',
+    'June 25 2019 boy and girl holding hands, romantic relationship milestone, full body characters, warm dreamy lighting, no text',
+    'August 03 2019 boy and girl kissing each other, romantic elegant scene, full body characters, tasteful cinematic pastel art, no text',
+    'September 13 2019 engagement ceremony, couple exchanging rings, both clearly visible, full body, festive romantic colors, no text',
+    'March 05 2020 wedding ceremony, bride and groom, visible wedding ring and thali chain moment, full body, warm celebration, no text',
+    'Moshika born milestone, father and mother with small baby girl standing between them, happy family portrait, full body, soft pastel style, no text'
+  ];
+
+  return prompts[index] || `romantic couple milestone illustration for ${labelText}, full body characters, no text`;
+}
+
+function buildTimelineImageUrl(index, labelText) {
+  const prompt = getTimelineEventPrompt(index, labelText);
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=768&height=768&seed=${701 + index}&model=flux&enhance=true&nologo=true`;
+}
+
+function buildTimelineSvg(index, labelText) {
+  const sceneMap = [
+    { top: '⛩️', left: '🙈', right: '🙋‍♀️', center: '💌' },
+    { top: '🌸', left: '🙋‍♂️', right: '👧', center: '💍' },
+    { top: '💫', left: '👦', right: '👧', center: '🤝' },
+    { top: '✨', left: '👦', right: '👧', center: '💋' },
+    { top: '🎉', left: '👦', right: '👧', center: '💍' },
+    { top: '💒', left: '🤵', right: '👰', center: '📿' },
+    { top: '🌈', left: '👨', right: '👩', center: '👧' }
+  ];
+
+  const scene = sceneMap[index] || { top: '💖', left: '👦', right: '👧', center: '❤️' };
+  const hue = (index * 28 + 320) % 360;
+  const gradId = `event-scene-${index}`;
+  const safeLabel = (labelText || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  return `
+    <svg class="event-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="hsl(${hue}, 90%, 78%)" />
+          <stop offset="100%" stop-color="hsl(${(hue + 42) % 360}, 86%, 62%)" />
+        </linearGradient>
+      </defs>
+
+      <rect x="6" y="6" width="108" height="108" rx="18" fill="url(#${gradId})" opacity="0.95" />
+      <circle cx="60" cy="60" r="40" fill="rgba(255,255,255,0.2)">
+        <animate attributeName="r" values="40;43;40" dur="2.8s" repeatCount="indefinite" />
+      </circle>
+
+      <text x="60" y="28" text-anchor="middle" font-size="16">${scene.top}</text>
+      <text x="38" y="76" text-anchor="middle" font-size="24">${scene.left}</text>
+      <text x="82" y="76" text-anchor="middle" font-size="24">${scene.right}</text>
+      <text x="60" y="85" text-anchor="middle" font-size="20">${scene.center}</text>
+
+      <rect x="16" y="92" width="88" height="16" rx="8" fill="rgba(255,255,255,0.25)" />
+      <text x="60" y="103" text-anchor="middle" font-size="8.5" fill="#fff" font-weight="600">${safeLabel}</text>
+    </svg>
+  `;
+}
+
+function initTimelineArt() {
+  const timeline = document.querySelector('.timeline-story') || document.querySelector('.timeline');
+  if (!timeline) return;
+
+  const events = timeline.querySelectorAll('.event');
+  events.forEach((event, idx) => {
+    if (event.querySelector('.event-media')) return;
+
+    const dateNode = event.querySelector('b');
+    if (dateNode) dateNode.classList.add('event-date');
+
+    const titleNode = event.querySelector('strong');
+    const titleText = titleNode ? titleNode.textContent.trim() : 'US';
+
+    const existingHtml = event.innerHTML;
+    event.innerHTML = '';
+
+    const content = document.createElement('div');
+    content.className = 'event-content';
+    content.innerHTML = existingHtml;
+
+    const media = document.createElement('div');
+    media.className = 'event-media';
+    const eventImage = document.createElement('img');
+    eventImage.className = 'event-ai-image';
+    eventImage.src = buildTimelineImageUrl(idx, titleText);
+    eventImage.alt = `${titleText} artwork`;
+    eventImage.loading = 'lazy';
+    eventImage.addEventListener('error', () => {
+      media.innerHTML = buildTimelineSvg(idx, titleText);
+    });
+
+    media.appendChild(eventImage);
+    event.appendChild(media);
+
+    event.appendChild(content);
+  });
+}
+
+function initTimelineStepper() {
+  const timeline = document.querySelector('.timeline-story') || document.querySelector('.timeline');
+  if (!timeline) return;
+
+  const events = Array.from(timeline.querySelectorAll('.event'));
+  if (!events.length) return;
+
+  const prevBtn = document.getElementById('timeline-prev');
+  const nextBtn = document.getElementById('timeline-next');
+  const progress = document.getElementById('timeline-progress');
+
+  timeline.classList.add('single-event');
+
+  let current = 0;
+
+  function render(scrollToCurrent = false) {
+    events.forEach((event, idx) => {
+      event.classList.toggle('is-visible', idx <= current);
+    });
+
+    if (progress) progress.textContent = `${current + 1} / ${events.length}`;
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current === events.length - 1;
+
+    if (scrollToCurrent && events[current]) {
+      events[current].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function show(indexToShow, scrollToCurrent = false) {
+    current = Math.max(0, Math.min(indexToShow, events.length - 1));
+    render(scrollToCurrent);
+  }
+
+  function next() {
+    if (current >= events.length - 1) return;
+    show(current + 1, true);
+  }
+
+  function prev() {
+    if (current <= 0) return;
+    show(current - 1, true);
+  }
+
+  timeline.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaY) < 8) return;
+    if (event.deltaY > 0 && current < events.length - 1) {
+      event.preventDefault();
+      next();
+    } else if (event.deltaY < 0 && current > 0) {
+      event.preventDefault();
+      prev();
+    }
+  }, { passive: false });
+
+  timeline.addEventListener('click', (event) => {
+    if (event.target.closest('button')) return;
+    next();
+  });
+
+  if (prevBtn) prevBtn.addEventListener('click', prev);
+  if (nextBtn) nextBtn.addEventListener('click', next);
+
+  render();
+}
 
 // Navigation function
 function move(direction) {
@@ -244,6 +415,30 @@ const quizData = [
   }
 ];
 
+let quizCurrentIndex = 0;
+
+function updateQuizStepper(){
+  const wrap = document.getElementById('quiz-container');
+  if(!wrap) return;
+
+  const qs = Array.from(wrap.querySelectorAll('.q'));
+  if(!qs.length) return;
+
+  quizCurrentIndex = Math.max(0, Math.min(quizCurrentIndex, qs.length - 1));
+
+  qs.forEach((q, idx)=>{
+    q.style.display = idx === quizCurrentIndex ? 'block' : 'none';
+  });
+
+  const prev = document.getElementById('quiz-prev');
+  const next = document.getElementById('quiz-next');
+  const progress = document.getElementById('quiz-progress');
+
+  if(prev) prev.disabled = quizCurrentIndex === 0;
+  if(next) next.disabled = quizCurrentIndex === qs.length - 1;
+  if(progress) progress.textContent = `${quizCurrentIndex + 1} / ${qs.length}`;
+}
+
 function renderQuiz(){
   const wrap = document.getElementById('quiz-container');
   if(!wrap) return;
@@ -297,6 +492,35 @@ function renderQuiz(){
     q.appendChild(fb);
     wrap.appendChild(q);
   });
+
+  const nav = document.createElement('div');
+  nav.className = 'quiz-stepper';
+  nav.innerHTML = `
+    <button type="button" id="quiz-prev">← Previous</button>
+    <span id="quiz-progress" class="quiz-progress">1 / ${quizData.length}</span>
+    <button type="button" id="quiz-next">Next →</button>
+  `;
+  wrap.appendChild(nav);
+
+  const prev = document.getElementById('quiz-prev');
+  const next = document.getElementById('quiz-next');
+
+  if(prev){
+    prev.addEventListener('click', ()=>{
+      quizCurrentIndex = Math.max(0, quizCurrentIndex - 1);
+      updateQuizStepper();
+    });
+  }
+
+  if(next){
+    next.addEventListener('click', ()=>{
+      quizCurrentIndex = Math.min(quizData.length - 1, quizCurrentIndex + 1);
+      updateQuizStepper();
+    });
+  }
+
+  quizCurrentIndex = 0;
+  updateQuizStepper();
 }
 
 function quizScore(){
@@ -326,6 +550,7 @@ function quizScore(){
 }
 
 function quizReset(){
+  quizCurrentIndex = 0;
   renderQuiz();
   const out = document.getElementById('quiz-result');
   if(out) out.textContent = '';

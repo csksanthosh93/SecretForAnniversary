@@ -127,16 +127,54 @@ h1{
 
 h2{font-weight:300;margin-top:10px;color:#ffb6c1;opacity:0.95}
 
+.intro-couple-name{
+  font-family:'Great Vibes',cursive;
+  font-size:52px;
+  color:#ffd9e9;
+  margin-top:6px;
+  letter-spacing:1px;
+  text-shadow:0 6px 18px rgba(255,105,180,0.35);
+}
+
 /* Hearts */
+#hearts-container{
+  margin:25px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
 .heart{
   font-size:70px;
-  margin:10px;
+  margin:0;
   display:inline-block;
+  position:relative;
+  line-height:1;
   opacity:0;
   transform:scale(0.3);
   transition:opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
               transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+.heart::after{
+  content:attr(data-name);
+  position:absolute;
+  left:50%;
+  top:52%;
+  transform:translate(-50%, -50%);
+  font-family:'Poppins', sans-serif;
+  font-size:12px;
+  font-weight:600;
+  color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,0.35);
+  pointer-events:none;
+  letter-spacing:0.2px;
+}
+
+#heart1{ order:1; }
+#heart3{ order:2; }
+#heart2{ order:3; }
 
 .heart.show{
   opacity:1;
@@ -161,8 +199,36 @@ h2{font-weight:300;margin-top:10px;color:#ffb6c1;opacity:0.95}
 }
 
 #heart3.show{
-  animation:heartShowBig 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, 
-            heartPulse 2s ease-in-out infinite 1.2s;
+  animation:heartSqueezeBetween 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+            heartPulse 2s ease-in-out infinite 1.15s;
+}
+
+@keyframes heartSqueezeBetween{
+  0%{ opacity:0; transform:translateX(38px) scale(0.1); }
+  35%{ opacity:1; transform:translateX(0) scale(1.95, 0.58); }
+  55%{ transform:translateX(0) scale(0.75, 1.35); }
+  75%{ transform:translateX(0) scale(1.2, 0.88); }
+  100%{ opacity:1; transform:translateX(0) scale(1); }
+}
+
+#heart1.make-space{
+  animation:heartMoveLeft 0.85s ease forwards;
+}
+
+#heart2.make-space{
+  animation:heartMoveRight 0.85s ease forwards;
+}
+
+@keyframes heartMoveLeft{
+  0%{ transform:translateX(0) scale(1); }
+  60%{ transform:translateX(-16px) scale(1.08); }
+  100%{ transform:translateX(-10px) scale(1); }
+}
+
+@keyframes heartMoveRight{
+  0%{ transform:translateX(0) scale(1); }
+  60%{ transform:translateX(16px) scale(1.08); }
+  100%{ transform:translateX(10px) scale(1); }
 }
 
 .moshika-warning{
@@ -385,6 +451,35 @@ button:active{
   scroll-behavior:smooth;
 }
 
+.timeline-story{
+  margin-top:0;
+  max-width:min(1200px,92vw);
+  width:92vw;
+  overflow-y:auto;
+  max-height:50vh;
+  padding:10px 10px 10px 34px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,105,180,0.5) rgba(255,182,193,0.1);
+  position:relative;
+}
+
+.timeline-story.single-event{
+  overflow-y:auto;
+  max-height:48vh;
+  padding:10px 10px 10px 34px;
+}
+
+.timeline-story::before{
+  content:'';
+  position:absolute;
+  left:22px;
+  top:10px;
+  bottom:10px;
+  width:3px;
+  border-radius:99px;
+  background:linear-gradient(180deg, rgba(255,182,193,0.35), rgba(255,20,147,0.7), rgba(255,182,193,0.35));
+}
+
 .timeline::-webkit-scrollbar{
   width:8px;
 }
@@ -404,20 +499,143 @@ button:active{
 }
 
 .event{
-  margin-bottom:18px;
-  padding:15px;
-  border-left:3px solid rgba(255,182,193,0.5);
-  background:rgba(255,182,193,0.05);
-  border-radius:8px;
+  margin-bottom:14px;
+  padding:16px;
+  border-left:none;
+  background:rgba(255,182,193,0.08);
+  border-radius:14px;
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  position:relative;
+  border:1px solid rgba(255,182,193,0.22);
   transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter:blur(5px);
 }
 
+.timeline-story.single-event .event{
+  display:none;
+  width:min(860px, 100%);
+  margin:0 auto 14px;
+  position:relative;
+}
+
+.timeline-story.single-event .event.is-visible{
+  display:flex;
+}
+
+.event::before{
+  content:'';
+  position:absolute;
+  left:-19px;
+  top:24px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  transform:none;
+  background:#ffb6c1;
+  border:2px solid rgba(255,255,255,0.7);
+  box-shadow:0 0 0 5px rgba(255,105,180,0.16);
+}
+
+.event-media{
+  width:86px;
+  min-width:86px;
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:18px;
+  background:linear-gradient(160deg, rgba(255,182,193,0.25), rgba(255,105,180,0.12));
+  border:1px solid rgba(255,182,193,0.4);
+  box-shadow:0 8px 20px rgba(255,105,180,0.18);
+  overflow:hidden;
+}
+
+.event-svg{
+  width:58px;
+  height:58px;
+  overflow:visible;
+}
+
+.event-ai-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 8px 18px rgba(255,105,180,0.28);
+}
+
+.event-content{
+  flex:1;
+}
+
+.event-date{
+  display:block;
+  margin-bottom:4px;
+  color:#ffd2e4;
+  font-size:13px;
+  letter-spacing:0.4px;
+}
+
+.event-content strong{
+  display:block;
+  margin-bottom:6px;
+  color:#ffe6f1;
+  font-size:17px;
+}
+
 .event:hover{
-  border-left-color:#ff69b4;
+  border-color:rgba(255,105,180,0.5);
   background:rgba(255,182,193,0.15);
-  transform:translateX(8px) scale(1.02);
+  transform:translateX(5px);
   box-shadow:0 8px 20px rgba(255,105,180,0.2);
+}
+
+.event-featured{
+  background:rgba(255,182,193,0.16);
+  border-color:rgba(255,105,180,0.62);
+}
+
+.event-featured::before{
+  background:#ff69b4;
+  box-shadow:0 0 0 6px rgba(255,105,180,0.22);
+}
+
+.timeline-controls{
+  width:min(1200px,92vw);
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.timeline-controls button{
+  margin-top:0;
+  min-width:140px;
+}
+
+.timeline-controls button:disabled{
+  opacity:0.55;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:0 6px 16px rgba(255,105,180,0.2);
+}
+
+.timeline-progress{
+  min-width:84px;
+  text-align:center;
+  color:#ffd2e4;
+  font-weight:600;
+}
+
+.timeline-hint{
+  margin-top:8px;
+  color:#ffb6c1;
+  font-size:13px;
 }
 
 .event:nth-child(1){ animation:fadeInUp 0.6s ease 0.1s both; }
@@ -428,6 +646,73 @@ button:active{
 .event:nth-child(6){ animation:fadeInUp 0.6s ease 0.6s both; }
 .event:nth-child(7){ animation:fadeInUp 0.6s ease 0.7s both; }
 .event:nth-child(8){ animation:fadeInUp 0.6s ease 0.8s both; border-left-color:#ff1493; }
+
+@media(min-width:992px){
+  .timeline-story{
+    padding:12px 18px;
+  }
+
+  .timeline-story::before{
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .event{
+    width:calc(50% - 34px);
+    margin-bottom:16px;
+  }
+
+  .event:nth-child(odd){
+    margin-right:auto;
+  }
+
+  .event:nth-child(even){
+    margin-left:auto;
+  }
+
+  .event:nth-child(odd)::before{
+    left:auto;
+    right:-41px;
+  }
+
+  .event:nth-child(even)::before{
+    left:-41px;
+  }
+
+  .event:nth-child(odd):hover{
+    transform:translateX(-5px);
+  }
+
+  .event:nth-child(even):hover{
+    transform:translateX(5px);
+  }
+
+  .timeline-story.single-event .event{
+    width:min(860px, 100%);
+    margin:0 auto 14px;
+  }
+
+  .timeline-story.single-event::before{
+    left:22px;
+    transform:none;
+  }
+
+  .timeline-story.single-event .event:nth-child(odd),
+  .timeline-story.single-event .event:nth-child(even){
+    margin:0 auto 14px;
+  }
+
+  .timeline-story.single-event .event:nth-child(odd)::before,
+  .timeline-story.single-event .event:nth-child(even)::before{
+    left:-19px;
+    right:auto;
+  }
+
+  .timeline-story.single-event .event:nth-child(odd):hover,
+  .timeline-story.single-event .event:nth-child(even):hover{
+    transform:translateX(5px);
+  }
+}
 
 @keyframes fadeInUp{
   from{ opacity:0; transform:translateY(20px); }
@@ -645,6 +930,33 @@ input:focus::placeholder{
   opacity:0.5;
 }
 
+.quiz-stepper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:14px 0 6px;
+  flex-wrap:wrap;
+}
+
+.quiz-stepper button{
+  margin-top:0;
+  min-width:130px;
+}
+
+.quiz-stepper button:disabled{
+  opacity:0.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.quiz-progress{
+  min-width:72px;
+  text-align:center;
+  color:#ffd2e4;
+  font-weight:600;
+}
+
 .quiz-actions{
   display:flex;
   gap:10px;
@@ -695,6 +1007,26 @@ input:focus::placeholder{
   .photo-caption{font-size:14px}
   .nav{width:45px;height:45px}
   .event{padding:12px}
+  .timeline-story{
+    padding-left:26px;
+  }
+  .timeline-story::before{
+    left:15px;
+  }
+  .event::before{
+    left:-11px;
+    width:11px;
+    height:11px;
+  }
+  .event-media{
+    width:72px;
+    min-width:72px;
+    height:72px;
+  }
+  .event-svg{
+    width:50px;
+    height:50px;
+  }
   button{padding:10px 20px;font-size:14px}
   .quiz-container{max-height:55vh}
   .timeline{max-height:45vh}
@@ -719,7 +1051,7 @@ input:focus::placeholder{
 <!-- SECTION 1: INTRO -->
 <section class="section">
   <h1>6+ Beautiful Years</h1>
-  <h2>Santhosh & Divya</h2>
+  <h2 class="intro-couple-name">Divya & Santhosh</h2>
 
   <p style="margin-top:15px;font-size:16px;color:#ffb6c1">
     A love story that began with an unexpected<br>
@@ -730,10 +1062,10 @@ input:focus::placeholder{
     Two hearts that met by chance…
   </p>
 
-  <div id="hearts-container" style="margin:25px 0">
-    <span class="heart" id="heart1">❤️</span>
-    <span class="heart" id="heart2">❤️</span>
-    <span class="heart" id="heart3" style="visibility:hidden">❤️</span>
+  <div id="hearts-container">
+    <span class="heart" id="heart1" data-name="Santhosh">❤️</span>
+    <span class="heart" id="heart2" data-name="Divya">❤️</span>
+    <span class="heart" id="heart3" data-name="Moshika" style="visibility:hidden">❤️</span>
   </div>
 
   <div class="moshika-warning" id="moshika-msg">
@@ -752,15 +1084,22 @@ input:focus::placeholder{
   <h1>Our Story</h1>
   <h2 style="color:#ffb6c1;font-weight:300;margin-top:10px;margin-bottom:20px">From that first meeting to forever</h2>
 
-  <div class="timeline" style="margin-top:0px;max-width:min(1200px,92vw);width:92vw;overflow-y:auto;max-height:50vh;padding:10px;scrollbar-width:thin;scrollbar-color:rgba(255,105,180,0.5) rgba(255,182,193,0.1)">
+  <div class="timeline timeline-story">
     <div class="event"><b>June 09, 2019</b><br><strong>First Meeting</strong><br>Walked into a temple to say no. Walked out knowing I never could. ❤️<br>She said YES! He said "Two Days"! 😅</div>
     <div class="event"><b>June 11, 2019</b><br><strong>He Said YES!</strong><br>Two days to accept what the heart knew instantly. 💚</div>
     <div class="event"><b>June 25, 2019</b><br><strong>First Held Hands</strong><br>Fingers intertwined. Heart secured.</div>
     <div class="event"><b>Aug 03, 2019</b><br><strong>First Kiss</strong><br>A quiet spark that never faded.</div>
     <div class="event"><b>Sept 13, 2019</b><br><strong>Engaged</strong><br>Two families, one promise.</div>
     <div class="event"><b>Mar 05, 2020</b><br><strong>Married</strong><br>Forever official. ❤️</div>
-    <div class="event" style="background:rgba(255,182,193,0.15);border-color:#ff69b4"><b>June 17, 2021</b><br><strong>Moshika Born 👶💕</strong><br>Two hearts became three.<br>Our world became infinitely more beautiful.</div>
+    <div class="event event-featured"><b>June 17, 2021</b><br><strong>Moshika Born 👶💕</strong><br>Two hearts became three.<br>Our world became infinitely more beautiful.</div>
   </div>
+
+  <div class="timeline-controls">
+    <button id="timeline-prev" type="button">← Previous</button>
+    <span class="timeline-progress" id="timeline-progress">1 / 1</span>
+    <button id="timeline-next" type="button">Next →</button>
+  </div>
+  <p class="timeline-hint">Tap the card or scroll to move through events one by one.</p>
 </section>
 
 <!-- SECTION 3: MEMORIES -->
