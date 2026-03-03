@@ -11,5 +11,5 @@
     <path d="M 0 -60 C 0 -115 70 -135 115 -90 C 150 -55 120 -5 0 90 C -120 -5 -150 -55 -115 -90 C -70 -135 0 -115 0 -60 Z" 
           fill="url(#g6)" stroke="#e64980" stroke-width="8"/>
   </g>
-  <text x="50%" y="560" text-anchor="middle" font-family="'Segoe UI', Tahoma, sans-serif" font-size="30" fill="#c2255c">Giggles & cuddles</text>
+  <text x="50%" y="560" text-anchor="middle" font-family="Poppins, 'Segoe UI', Tahoma, sans-serif" font-size="30" fill="#c2255c">Giggles & cuddles</text>
 </svg>

@@ -1,16 +1,15 @@
 
-# Anniversary Site — Divya ❤ Santhosh
-
-Interactive mini-site for our anniversary with a romantic theme.
-
-## Sections
-- Hearts hero (two hearts → three with a fun line for Moshika)
-- Timeline (milestones from 2019–2021)
-- Gallery (10 placeholders — replace in `assets/photos/`)
-- Quiz (8 questions, instant feedback, score & reset)
-- For Our Daughter — Moshika
-- Secret Message (unlock with **pannikutty**)
-
-## Deploy
-- Open `index.html` locally to preview.
-- Host on GitHub Pages by deploying these files at repo root (or `/docs`).
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="1200" height="900">
+  <defs>
+    <linearGradient id="g9" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffcfe1"/>
+      <stop offset="100%" stop-color="#ffa0c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff1f5"/>
+  <g transform="translate(400,290)">
+    <path d="M 0 -60 C 0 -115 70 -135 115 -90 C 150 -55 120 -5 0 90 C -120 -5 -150 -55 -115 -90 C -70 -135 0 -115 0 -60 Z" 
+          fill="url(#g9)" stroke="#e64980" stroke-width="8"/>
+  </g>
+  <text x="50%" y="560" text-anchor="middle" font-family="Poppins, 'Segoe UI', Tahoma, sans-serif" font-size="30" fill="#c2255c">Always & always</text>
+</svg>
