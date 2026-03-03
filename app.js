@@ -5,8 +5,8 @@ const total = 5;
 // Animate hearts on page load
 window.addEventListener('load', () => {
   // Mark first section as active
-  const firstSection = document.querySelector('.section');
-  if(firstSection) firstSection.classList.add('active');
+  setActiveSection(0);
+  initSectionScrollSync();
   
   // Show first two hearts
   setTimeout(() => {
@@ -50,6 +50,60 @@ window.addEventListener('load', () => {
   if(btnScore) btnScore.addEventListener('click', quizScore);
   if(btnReset) btnReset.addEventListener('click', quizReset);
 });
+
+function setActiveSection(nextIndex) {
+  const container = document.getElementById('container');
+  if (!container) return;
+  const sections = container.querySelectorAll('.section');
+  if (!sections.length) return;
+
+  const boundedIndex = Math.max(0, Math.min(nextIndex, sections.length - 1));
+  index = boundedIndex;
+
+  sections.forEach((section, sectionIndex) => {
+    if (sectionIndex === boundedIndex) {
+      section.classList.add('active');
+      section.style.opacity = '1';
+      section.style.transform = 'scale(1)';
+    } else {
+      section.classList.remove('active');
+      section.style.opacity = '0.9';
+      section.style.transform = 'scale(0.98)';
+    }
+  });
+}
+
+function initSectionScrollSync() {
+  const container = document.getElementById('container');
+  if (!container) return;
+  const sections = Array.from(container.querySelectorAll('.section'));
+  if (!sections.length) return;
+
+  let ticking = false;
+  container.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+
+    requestAnimationFrame(() => {
+      const currentTop = container.scrollTop;
+      let nearestIndex = 0;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section, sectionIndex) => {
+        const distance = Math.abs(section.offsetTop - currentTop);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = sectionIndex;
+        }
+      });
+
+      if (nearestIndex !== index) {
+        setActiveSection(nearestIndex);
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+}
 
 function getTimelineEventPrompt(index, labelText) {
   const prompts = [
@@ -220,25 +274,14 @@ function initTimelineStepper() {
 function move(direction) {
   const container = document.getElementById("container");
   const sections = container.querySelectorAll('.section');
-  
-  // Fade out current section
-  if(sections[index]) {
-    sections[index].style.opacity = '0.5';
-    sections[index].style.transform = 'scale(0.95)';
-    sections[index].classList.remove('active');
+  if (!container || !sections.length) return;
+
+  const nextIndex = Math.min(Math.max(index + direction, 0), total - 1);
+  setActiveSection(nextIndex);
+  const targetSection = sections[nextIndex];
+  if (targetSection) {
+    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  
-  index = Math.min(Math.max(index + direction, 0), total - 1);
-  container.style.transform = `translateX(-${index * 100}vw)`;
-  
-  // Fade in new section
-  setTimeout(() => {
-    if(sections[index]) {
-      sections[index].style.opacity = '1';
-      sections[index].style.transform = 'scale(1)';
-      sections[index].classList.add('active');
-    }
-  }, 300);
   
   // Reset heart animations when returning to first page
   if (index === 0) {
@@ -319,10 +362,10 @@ function initGalleryNavigation() {
 }
 
 // Mobile swipe support
-let startX = 0;
+let startY = 0;
 let touchStartedInGallery = false;
 document.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
   touchStartedInGallery = !!e.target.closest('#memories-gallery');
 }, { passive: true });
 
@@ -331,7 +374,7 @@ document.addEventListener("touchend", e => {
     touchStartedInGallery = false;
     return;
   }
-  const diff = startX - e.changedTouches[0].clientX;
+  const diff = startY - e.changedTouches[0].clientY;
   if (Math.abs(diff) > 50) {
     diff > 0 ? move(1) : move(-1);
   }
