@@ -128,18 +128,45 @@ function confetti() {
   }, 100);
 }
 
+function scrollGallery(direction) {
+  const gallery = document.getElementById('memories-gallery');
+  if (!gallery) return;
+  const step = gallery.clientWidth + 16;
+  gallery.scrollBy({ left: direction * step, behavior: 'smooth' });
+}
+
+function initGalleryNavigation() {
+  const gallery = document.getElementById('memories-gallery');
+  if (!gallery) return;
+
+  gallery.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+      event.preventDefault();
+      gallery.scrollBy({ left: event.deltaY * 1.2, behavior: 'smooth' });
+    }
+  }, { passive: false });
+}
+
 // Mobile swipe support
 let startX = 0;
+let touchStartedInGallery = false;
 document.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
+  touchStartedInGallery = !!e.target.closest('#memories-gallery');
 }, { passive: true });
 
 document.addEventListener("touchend", e => {
+  if (touchStartedInGallery) {
+    touchStartedInGallery = false;
+    return;
+  }
   const diff = startX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 50) {
     diff > 0 ? move(1) : move(-1);
   }
 });
+
+window.addEventListener('load', initGalleryNavigation);
 
 // ==== Quiz Data & Logic ====
 const quizData = [
