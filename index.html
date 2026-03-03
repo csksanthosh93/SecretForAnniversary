@@ -1,15 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6+ Years of Us ❤️ – Santhosh & Divya</title>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="1200" height="900">
-  <defs>
-    <linearGradient id="g4" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#ffd6e6"/>
-      <stop offset="100%" stop-color="#ff9ec2"/>
-    </linearGradient>
-  </defs>
-  <rect width="100%" height="100%" fill="#fff1f5"/>
-  <g transform="translate(400,290)">
-    <path d="M 0 -60 C 0 -115 70 -135 115 -90 C 150 -55 120 -5 0 90 C -120 -5 -150 -55 -115 -90 C -70 -135 0 -115 0 -60 Z" 
-          fill="url(#g4)" stroke="#e64980" stroke-width="8"/>
-  </g>
-  <text x="50%" y="560" text-anchor="middle" font-family="Poppins, 'Segoe UI', Tahoma, sans-serif" font-size="30" fill="#c2255c">Little moments, big love</text>
-</svg>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  background:#1a0a1e;color:#fff;
+}
+
+/* Elegant Background */
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0.4}
+.overlay{
+  position:fixed;inset:0;z-index:-1;
+  background:linear-gradient(135deg, 
+    rgba(138,43,226,0.2) 0%, 
+    rgba(75,0,130,0.3) 20%,
+    rgba(255,20,147,0.15) 40%,
+    rgba(138,43,226,0.25) 60%,
+    rgba(75,0,130,0.2) 80%,
+    rgba(186,85,211,0.2) 100%);
+  background-size:200% 200%;
+  animation: bgFlow 15s ease infinite;
+}
+
+@keyframes bgFlow {
+  0% { 
+    background-position:0% 50%; 
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% { 
+    background-position:100% 50%; 
+    filter: hue-rotate(10deg) brightness(1.08);
+  }
+  100% { 
+    background-position:0% 50%; 
+    filter: hue-rotate(0deg) brightness(1);
+  }
+}
+
+/* Slider */
+#container{
+  display:flex;
+  width:500vw;
+  height:100vh;
+  transition:transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change:transform;
+}
+.section{
+  width:100vw;height:100vh;padding:40px 20px;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  position:relative;
+  opacity:1;
+  transform:scale(1);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1.5s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.section.active::before{
+  opacity:1;
+}
+
+/* Section-specific color themes */
+.section:nth-child(1)::before{
+  background:radial-gradient(circle at 50% 50%, rgba(255,182,193,0.15), transparent 70%);
+}
+
+.section:nth-child(2)::before{
+  background:radial-gradient(circle at 50% 50%, rgba(186,85,211,0.12), transparent 70%);
+}
+
+.section:nth-child(3)::before{
+  background:radial-gradient(circle at 50% 50%, rgba(255,105,180,0.1), transparent 70%);
+}
+
+.section:nth-child(4)::before{
+  background:radial-gradient(circle at 50% 50%, rgba(138,43,226,0.1), transparent 70%);
+}
+
+.section:nth-child(5)::before{
+  background:radial-gradient(circle at 50% 50%, rgba(255,20,147,0.15), transparent 70%);
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:60px;
+  background:linear-gradient(135deg, #ffb6c1, #ff69b4, #ffa0d2, #ff69b4, #ffb6c1);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradientFlow 4s ease-in-out infinite, glow 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(255,182,193,0.4));
+}
+
+@keyframes gradientFlow{
+  0%, 100%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255,182,193,0.4)) brightness(1); }
+  50% { filter: drop-shadow(0 0 30px rgba(255,105,180,0.6)) brightness(1.15); }
+}
+
+h2{font-weight:300;margin-top:10px;color:#ffb6c1;opacity:0.95}
+
+/* Hearts */
+.heart{
+  font-size:70px;
+  margin:10px;
+  display:inline-block;
+  opacity:0;
+  transform:scale(0.3);
+  transition:opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+              transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.heart.show{
+  opacity:1;
+  animation:heartShow 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, 
+            heartPulse 2s ease-in-out infinite 0.6s;
+}
+
+@keyframes heartShow{
+  0%{transform:scale(0.3)}
+  100%{transform:scale(1)}
+}
+
+@keyframes heartShowBig{
+  0%{transform:scale(0.3)}
+  40%{transform:scale(2.5)}
+  100%{transform:scale(1)}
+}
+
+@keyframes heartPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
+
+#heart3.show{
+  animation:heartShowBig 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, 
+            heartPulse 2s ease-in-out infinite 1.2s;
+}
+
+.moshika-warning{
+  display:inline-block;
+  background:linear-gradient(135deg, rgba(255,182,193,0.2), rgba(255,105,180,0.3));
+  border:2px solid rgba(255,182,193,0.5);
+  border-radius:20px;
+  padding:12px 20px;
+  margin-top:15px;
+  font-size:16px;
+  color:#fff;
+  opacity:0;
+  transform:translateY(-20px) scale(0.8);
+  transition:all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow:0 8px 25px rgba(255,105,180,0.3);
+  position:relative;
+}
+
+.moshika-warning::before{
+  content:'💫';
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  font-size:24px;
+  animation:twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+  0%, 100%{ transform:scale(1) rotate(0deg); opacity:1; }
+  50%{ transform:scale(1.3) rotate(180deg); opacity:0.7; }
+}
+
+.moshika-warning.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  animation:gentleBounce 2s ease-in-out 0.8s infinite;
+}
+
+@keyframes gentleBounce{
+  0%, 100%{ transform:translateY(0) scale(1); }
+  50%{ transform:translateY(-5px) scale(1.02); }
+}
+
+.family-text{
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.6s ease;
+}
+
+.family-text.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Buttons */
+button{
+  margin-top:20px;padding:12px 28px;
+  border-radius:30px;border:none;
+  background:linear-gradient(135deg, #ff4d6d 0%, #ff69b4 50%, #ff99cc 100%);
+  color:#fff;cursor:pointer;
+  font-weight:500;
+  box-shadow:0 8px 25px rgba(255,105,180,0.4);
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position:relative;
+  overflow:hidden;
+}
+
+button::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  transform:translateX(-100%) skewX(-15deg);
+  transition:transform 0.6s ease;
+}
+
+button:hover::before{
+  transform:translateX(100%) skewX(-15deg);
+}
+
+button:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 15px 40px rgba(255,105,180,0.7);
+  background:linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff99cc 100%);
+}
+
+button:active{
+  transform:translateY(-2px) scale(0.98);
+}
+
+/* Gallery */
+.gallery{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:15px;max-width:900px
+}
+.photo{
+  height:180px;border-radius:15px;
+  background:linear-gradient(135deg, rgba(255,182,193,0.15), rgba(255,105,180,0.25));
+  display:flex;align-items:center;justify-content:center;
+  color:#ffb6c1;
+  border:1px solid rgba(255,182,193,0.2);
+  backdrop-filter:blur(10px);
+  transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position:relative;
+  overflow:hidden;
+}
+
+.photo::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  transform:translateX(-100%);
+  transition:transform 0.6s ease;
+}
+
+.photo:hover::before{
+  transform:translateX(100%);
+}
+
+.photo:hover{
+  transform:translateY(-8px) scale(1.05);
+  background:linear-gradient(135deg, rgba(255,182,193,0.25), rgba(255,105,180,0.35));
+  box-shadow:0 15px 40px rgba(255,105,180,0.5);
+  border-color:#ff69b4;
+}
+
+.photo:nth-child(1){ animation:fadeInScale 0.6s ease 0.1s both; }
+.photo:nth-child(2){ animation:fadeInScale 0.6s ease 0.2s both; }
+.photo:nth-child(3){ animation:fadeInScale 0.6s ease 0.3s both; }
+.photo:nth-child(4){ animation:fadeInScale 0.6s ease 0.4s both; }
+.photo:nth-child(5){ animation:fadeInScale 0.6s ease 0.5s both; }
+.photo:nth-child(6){ animation:fadeInScale 0.6s ease 0.6s both; }
+
+@keyframes fadeInScale{
+  from{ opacity:0; transform:scale(0.8); }
+  to{ opacity:1; transform:scale(1); }
+}
+
+/* Timeline */
+.timeline{
+  max-width:650px;
+  text-align:left;
+  scroll-behavior:smooth;
+}
+
+.timeline::-webkit-scrollbar{
+  width:8px;
+}
+
+.timeline::-webkit-scrollbar-track{
+  background:rgba(255,182,193,0.1);
+  border-radius:10px;
+}
+
+.timeline::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, rgba(255,105,180,0.5), rgba(255,182,193,0.5));
+  border-radius:10px;
+}
+
+.timeline::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg, rgba(255,105,180,0.8), rgba(255,182,193,0.8));
+}
+
+.event{
+  margin-bottom:18px;
+  padding:15px;
+  border-left:3px solid rgba(255,182,193,0.5);
+  background:rgba(255,182,193,0.05);
+  border-radius:8px;
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter:blur(5px);
+}
+
+.event:hover{
+  border-left-color:#ff69b4;
+  background:rgba(255,182,193,0.15);
+  transform:translateX(8px) scale(1.02);
+  box-shadow:0 8px 20px rgba(255,105,180,0.2);
+}
+
+.event:nth-child(1){ animation:fadeInUp 0.6s ease 0.1s both; }
+.event:nth-child(2){ animation:fadeInUp 0.6s ease 0.2s both; }
+.event:nth-child(3){ animation:fadeInUp 0.6s ease 0.3s both; }
+.event:nth-child(4){ animation:fadeInUp 0.6s ease 0.4s both; }
+.event:nth-child(5){ animation:fadeInUp 0.6s ease 0.5s both; }
+.event:nth-child(6){ animation:fadeInUp 0.6s ease 0.6s both; }
+.event:nth-child(7){ animation:fadeInUp 0.6s ease 0.7s both; }
+.event:nth-child(8){ animation:fadeInUp 0.6s ease 0.8s both; border-left-color:#ff1493; }
+
+@keyframes fadeInUp{
+  from{ opacity:0; transform:translateY(20px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* Nav */
+.nav{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg, #ff4d6d, #ff69b4);
+  display:flex;
+  align-items:center;justify-content:center;
+  cursor:pointer;z-index:100;
+  box-shadow:0 6px 20px rgba(255,105,180,0.4);
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border:2px solid rgba(255,182,193,0.3);
+  backdrop-filter:blur(10px);
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.nav::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.nav:hover::before{
+  opacity:1;
+}
+
+.nav:hover{
+  transform:translateY(-50%) scale(1.15);
+  box-shadow:0 10px 35px rgba(255,105,180,0.7);
+  background:linear-gradient(135deg, #ff1493, #ff69b4);
+}
+
+.nav:active{
+  transform:translateY(-50%) scale(1.05);
+}
+
+#prev{left:15px} #next{right:15px}
+
+/* Input styling */
+input{
+  font-family:'Poppins',sans-serif;
+  background:rgba(255,182,193,0.1);
+  border:2px solid rgba(255,182,193,0.3);
+  color:#fff;
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter:blur(10px);
+}
+
+input:focus{
+  outline:none;
+  border-color:#ff69b4;
+  background:rgba(255,182,193,0.18);
+  box-shadow:0 0 25px rgba(255,105,180,0.4), 0 0 50px rgba(255,105,180,0.2);
+  transform:scale(1.02);
+}
+
+input::placeholder{
+  color:rgba(255,182,193,0.6);
+  transition:color 0.3s ease;
+}
+
+input:focus::placeholder{
+  color:rgba(255,182,193,0.8);
+}
+
+/* Quiz Styling */
+.quiz-container{
+  max-width:800px;
+  width:90%;
+  max-height:60vh;
+  overflow-y:auto;
+  margin:20px auto;
+  padding:10px;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,105,180,0.5) rgba(255,182,193,0.1);
+}
+
+.quiz-container::-webkit-scrollbar{
+  width:8px;
+}
+
+.quiz-container::-webkit-scrollbar-track{
+  background:rgba(255,182,193,0.1);
+  border-radius:10px;
+}
+
+.quiz-container::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, rgba(255,105,180,0.5), rgba(255,182,193,0.5));
+  border-radius:10px;
+  transition:background 0.3s ease;
+}
+
+.quiz-container::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg, rgba(255,105,180,0.8), rgba(255,182,193,0.8));
+}
+
+.q{
+  background:rgba(255,182,193,0.08);
+  border:1px solid rgba(255,182,193,0.25);
+  border-radius:16px;
+  padding:16px;
+  margin:12px 0;
+  box-shadow:0 8px 20px rgba(255,105,180,0.15);
+  backdrop-filter:blur(10px);
+  transition:all 0.4s ease;
+  animation:fadeInUp 0.5s ease both;
+}
+
+.q:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(255,105,180,0.2);
+  border-color:rgba(255,105,180,0.4);
+}
+
+.q-title{
+  font-weight:600;
+  color:#ffb6c1;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+  margin-top:10px;
+}
+
+.option{
+  border:1px solid rgba(255,182,193,0.3);
+  border-radius:12px;
+  padding:10px 12px;
+  background:rgba(255,182,193,0.05);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color:#fff;
+  font-size:14px;
+  position:relative;
+  overflow:hidden;
+}
+
+.option::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  transform:translateX(-100%);
+  transition:transform 0.4s ease;
+}
+
+.option:hover::before{
+  transform:translateX(100%);
+}
+
+.option:hover{
+  transform:translateY(-3px) scale(1.02);
+  background:rgba(255,182,193,0.15);
+  box-shadow:0 8px 20px rgba(255,105,180,0.3);
+  border-color:rgba(255,105,180,0.5);
+}
+
+.option.correct{
+  border-color:#2f9e44;
+  background:rgba(46,213,115,0.2);
+  color:#a8e6cf;
+  animation:correctPulse 0.6s ease;
+}
+
+.option.wrong{
+  border-color:#e03131;
+  background:rgba(255,107,107,0.15);
+  color:#ffb3b3;
+  animation:wrongShake 0.5s ease;
+}
+
+@keyframes correctPulse{
+  0%, 100%{ transform:scale(1); }
+  50%{ transform:scale(1.05); box-shadow:0 0 20px rgba(46,213,115,0.5); }
+}
+
+@keyframes wrongShake{
+  0%, 100%{ transform:translateX(0); }
+  25%{ transform:translateX(-5px); }
+  75%{ transform:translateX(5px); }
+}
+
+.feedback{
+  margin-top:10px;
+  font-size:14px;
+  color:#ffa0d2;
+  display:none;
+  font-style:italic;
+}
+
+.q.answered .feedback{
+  display:block;
+}
+
+.q.answered .option:not(.selected){
+  opacity:0.5;
+}
+
+.quiz-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:15px;
+}
+
+#quiz-result{
+  font-weight:600;
+  color:#ff69b4;
+  font-size:18px;
+}
+
+/* Smooth fade in for sections */
+.section{
+  opacity:0;
+  animation:sectionFadeIn 1s ease forwards;
+}
+
+@keyframes sectionFadeIn{
+  to{opacity:1}
+}
+
+@keyframes revealLetter{
+  0%{
+    opacity:0;
+    transform:translateY(30px) scale(0.95);
+    filter:blur(5px);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  h1{font-size:42px}
+  .gallery{grid-template-columns:1fr}
+  .nav{width:45px;height:45px}
+  .event{padding:12px}
+  button{padding:10px 20px;font-size:14px}
+  .quiz-container{max-height:55vh}
+  .timeline{max-height:45vh}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="https://cdn.coverr.co/videos/coverr-couple-holding-hands-1586/1080p.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- Navigation -->
+<div id="prev" class="nav" onclick="move(-1)">❮</div>
+<div id="next" class="nav" onclick="move(1)">❯</div>
+
+<div id="container">
+
+<!-- SECTION 1: INTRO -->
+<section class="section">
+  <h1>6+ Beautiful Years</h1>
+  <h2>Santhosh & Divya</h2>
+
+  <p style="margin-top:15px;font-size:16px;color:#ffb6c1">
+    A love story that began with an unexpected<br>
+    "bride‑seeing" scene 😄
+  </p>
+
+  <p id="heart-text" style="margin-top:20px;font-size:16px;color:#ffb6c1">
+    Two hearts that met by chance…
+  </p>
+
+  <div id="hearts-container" style="margin:25px 0">
+    <span class="heart" id="heart1">❤️</span>
+    <span class="heart" id="heart2">❤️</span>
+    <span class="heart" id="heart3" style="visibility:hidden">❤️</span>
+  </div>
+
+  <div class="moshika-warning" id="moshika-msg">
+    👧 "Wait! Don't forget me! I'll come fight if it's not THREE!" 🥊😄
+  </div>
+
+  <p class="family-text" id="family-text" style="margin-top:20px;font-size:16px;color:#ffb6c1;font-weight:500">
+    …and became a family of THREE ❤️❤️❤️
+  </p>
+
+  <button onclick="move(1)" style="margin-top:25px">Begin Our Journey →</button>
+</section>
+
+<!-- SECTION 2: OUR STORY -->
+<section class="section">
+  <h1>Our Story</h1>
+  <h2 style="color:#ffb6c1;font-weight:300;margin-top:10px;margin-bottom:20px">From that first meeting to forever</h2>
+
+  <div class="timeline" style="margin-top:0px;max-width:750px;overflow-y:auto;max-height:50vh;padding:10px;scrollbar-width:thin;scrollbar-color:rgba(255,105,180,0.5) rgba(255,182,193,0.1)">
+    <div class="event"><b>June 09, 2019</b><br><strong>First Meeting</strong><br>Walked into a temple to say no. Walked out knowing I never could. ❤️<br>She said YES! He said "Two Days"! 😅</div>
+    <div class="event"><b>June 11, 2019</b><br><strong>He Said YES!</strong><br>Two days to accept what the heart knew instantly. 💚</div>
+    <div class="event"><b>June 25, 2019</b><br><strong>First Held Hands</strong><br>Fingers intertwined. Heart secured.</div>
+    <div class="event"><b>Aug 03, 2019</b><br><strong>First Kiss</strong><br>A quiet spark that never faded.</div>
+    <div class="event"><b>Sept 13, 2019</b><br><strong>Engaged</strong><br>Two families, one promise.</div>
+    <div class="event"><b>Mar 05, 2020</b><br><strong>Married</strong><br>Forever official. ❤️</div>
+    <div class="event" style="background:rgba(255,182,193,0.15);border-color:#ff69b4"><b>June 17, 2021</b><br><strong>Moshika Born 👶💕</strong><br>Two hearts became three.<br>Our world became infinitely more beautiful.</div>
+  </div>
+</section>
+
+<!-- SECTION 3: MEMORIES -->
+<section class="section">
+  <h1>Our Memories</h1>
+  <h2 style="color:#ffb6c1;font-weight:300;margin-top:10px">Little pieces of our journey ❤️</h2>
+
+  <div class="gallery" style="margin-top:25px">
+    <div class="photo">Photo 1</div>
+    <div class="photo">Photo 2</div>
+    <div class="photo">Photo 3</div>
+    <div class="photo">Photo 4</div>
+    <div class="photo">Photo 5</div>
+    <div class="photo">Photo 6</div>
+  </div>
+</section>
+
+<!-- SECTION 4: QUIZ -->
+<section class="section">
+  <h1>Just for Fun</h1>
+  <h2 style="color:#ffb6c1;font-weight:300;margin-top:10px">How well do you know us? 😄</h2>
+  
+  <div id="quiz-container" class="quiz-container"></div>
+  
+  <div class="quiz-actions">
+    <button id="quiz-score" class="button">Show My Score</button>
+    <button id="quiz-reset" style="background:#8b5cf6;margin-left:10px">Try Again</button>
+    <div id="quiz-result" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<!-- SECTION 5: FOREVER -->
+<section class="section" style="overflow-y:auto;padding:50px 20px">
+  <h1>Forever & Always</h1>
+  <h2 style="color:#ffb6c1;font-weight:300;margin-top:10px">What is my favorite pet name for you?</h2>
+
+  <input id="ans" placeholder="Type your answer…" style="margin-top:12px;padding:12px;border-radius:20px;border:none;text-align:center;min-width:250px">
+  <button onclick="check()" style="margin-top:10px">Unlock My Heart 🔓</button>
+
+  <div id="msg" style="margin-top:15px;color:#ffb6c1;font-weight:500"></div>
+
+  <div id="love-letter" style="display:none;margin-top:35px;max-width:700px;opacity:0;transition:opacity 1s ease;text-align:left;padding:25px;background:rgba(255,182,193,0.08);border-radius:20px;border:2px solid rgba(255,182,193,0.3)">
+    <h1 style="margin-bottom:20px;text-align:center">My Love Letter to You</h1>
+    
+    <p style="line-height:1.9;font-size:16px;color:#fff">
+      My Dearest Divya,<br><br>
+
+      Six years ago, I walked into a temple convinced I would say no.<br>
+      And then I saw you.<br><br>
+
+      For the first time in my life, my voice trembled.
+      You spoke. I listened. And everything changed.<br><br>
+
+      You didn't just walk into my life —
+      you walked past my fears, my doubts, and my stubborn plans…
+      and made yourself at home in my heart.<br><br>
+
+      Watching you become a mother to Moshika showed me
+      a love deeper than I ever imagined.<br>
+      You are my calm, my strength, and my safest place.<br><br>
+
+      Thank you for choosing me that day.<br>
+      Thank you for choosing me every day since.<br><br>
+
+      Forever yours,<br>
+      <b>Santhosh ❤️</b>
+    </p>
+    
+    <div style="margin-top:40px;padding-top:30px;border-top:2px solid rgba(255,182,193,0.4);text-align:center">
+      <h2 style="font-size:42px;margin-bottom:15px;color:#ff69b4">Forever</h2>
+      
+      <p style="font-size:21px;color:#ffb6c1;line-height:1.7;font-weight:500">
+        6+ years down… forever to go. ❤️
+      </p>
+
+      <button onclick="confetti()" style="margin-top:28px;font-size:17px;padding:14px 32px">Celebrate Our Love 🎉</button>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
